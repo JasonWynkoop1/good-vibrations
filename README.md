@@ -80,6 +80,10 @@ To push your code to the GitHub repository you've created, follow these steps:
 
 These commands will push all your code to the GitHub repository you've created.
 
+## GitHub Pages Deployment
+
+This project is configured to deploy to GitHub Pages using GitHub Actions. For detailed instructions on how to deploy the site to GitHub Pages, please see the [GitHub Pages Deployment Guide](GITHUB_PAGES_DEPLOYMENT.md).
+
 ## Squarespace Deployment with Custom Domain
 
 This site is configured to be deployed on Squarespace with the custom domain "goodvibrationsspeech.net". The following steps have been completed:
