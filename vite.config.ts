@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Root path for standard deployment
+  base: '/good-vibrations/', // GitHub Pages repository name
   build: {
     outDir: 'docs', // Output to docs directory for GitHub Pages
   },
