@@ -5,6 +5,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   base: '/', // Root path for standard deployment
+  build: {
+    outDir: 'docs', // Output to docs directory for GitHub Pages
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

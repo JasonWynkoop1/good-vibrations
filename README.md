@@ -80,6 +80,72 @@ To push your code to the GitHub repository you've created, follow these steps:
 
 These commands will push all your code to the GitHub repository you've created.
 
+## GitHub Pages Deployment
+
+This project is configured to be deployed on GitHub Pages. The following steps have been completed:
+
+### 1. Configure Vite for GitHub Pages
+
+The `vite.config.ts` file has been updated to output the build to the `docs` directory:
+
+```typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/', // Root path for standard deployment
+  build: {
+    outDir: 'docs', // Output to docs directory for GitHub Pages
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+})
+```
+
+### 2. Jekyll Configuration
+
+A Jekyll configuration file (`_config.yml`) has been added to the `docs` directory to configure GitHub Pages:
+
+```yaml
+# Jekyll configuration for GitHub Pages
+title: Good Vibrations Speech & Language Therapy
+description: Providing exceptional speech and language therapy services for students through school contracts.
+baseurl: ""
+url: ""
+theme: jekyll-theme-primer
+```
+
+### 3. Disable Jekyll Processing (Optional)
+
+A `.nojekyll` file has been added to the `docs` directory to disable Jekyll processing. This ensures that GitHub Pages serves the site exactly as built without any Jekyll processing.
+
+### 4. Build and Deploy
+
+To build the site for GitHub Pages deployment, run:
+
+```bash
+npm run build
+```
+
+This will create the `docs` directory with the built site. When you push these changes to GitHub, GitHub Pages will automatically serve the site from the `docs` directory.
+
+### 5. Configure GitHub Pages in Repository Settings
+
+In your GitHub repository settings:
+
+1. Go to the "Pages" section
+2. Under "Source", select "Deploy from a branch"
+3. Select the branch (usually `main`)
+4. Select the folder (`/docs`)
+5. Click "Save"
+
+Your site will be available at `https://yourusername.github.io/yourrepositoryname/`.
+
 
 
 ## Squarespace Deployment with Custom Domain
