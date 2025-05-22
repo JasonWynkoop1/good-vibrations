@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# Good Vibrations - React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -53,7 +53,7 @@ export default tseslint.config({
 })
 ```
 
-# GitHub Repository Setup Instructions
+## GitHub Repository Setup Instructions
 
 To push your code to the GitHub repository you've created, follow these steps:
 
@@ -75,7 +75,7 @@ To push your code to the GitHub repository you've created, follow these steps:
 
 4. Push your code to GitHub:
    ```
-   git push -u origin master
+   git push -u origin main
    ```
 
 These commands will push all your code to the GitHub repository you've created.
