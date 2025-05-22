@@ -18,7 +18,7 @@ export function HeroSection({ sectionRef }: HeroSectionProps) {
           Transforming Lives Through Better Communication
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-8">
-          Good Vibrations helps people of all ages improve their communication skills using proven therapy methods.
+          Good Vibrations helps students improve their communication skills through specialized therapy services contracted to schools.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-5 md:px-8 md:py-6 rounded-xl bg-primary text-white border border-white/20 hover:scale-105">

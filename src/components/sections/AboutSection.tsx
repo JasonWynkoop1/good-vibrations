@@ -17,7 +17,7 @@ export function AboutSection({ sectionRef }: AboutSectionProps) {
           My Practice Philosophy
         </h2>
         <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto">
-          Providing personalized speech and language therapy services with compassion and expertise
+          Providing personalized speech and language therapy services for students through school contracts
         </p>
       </div>
 
@@ -27,7 +27,7 @@ export function AboutSection({ sectionRef }: AboutSectionProps) {
             <div>
               <h3 className="text-xl md:text-2xl font-semibold text-accent mb-3">My Mission</h3>
               <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                At Good Vibrations, my mission is to empower individuals of all ages to overcome communication barriers through innovative, evidence-based therapy services delivered with compassion and excellence.
+                At Good Vibrations, my mission is to empower students to overcome communication barriers through innovative, evidence-based therapy services contracted to schools and delivered with compassion and excellence.
               </p>
             </div>
 
@@ -101,7 +101,7 @@ export function AboutSection({ sectionRef }: AboutSectionProps) {
           <div className="bg-white/40 backdrop-blur-sm p-5 md:p-8 rounded-2xl border border-primary/20 shadow-md">
             <h3 className="text-xl md:text-2xl font-semibold text-primary mb-3">Services Offered</h3>
             <p className="text-muted-foreground leading-relaxed text-base mb-4">
-              I help people of all ages with many different communication challenges.
+              I help students with many different communication challenges through services contracted to schools.
             </p>
             <ul className="space-y-2">
               <li className="flex items-start">
