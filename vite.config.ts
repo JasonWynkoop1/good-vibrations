@@ -5,7 +5,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/good-vibrations/', // Use repository name for GitHub Pages without custom domain
+  base: '/', // Using root path for custom domain goodvibrationsspeech.net
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
