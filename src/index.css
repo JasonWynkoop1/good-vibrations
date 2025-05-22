@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 215 25% 27%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    --primary: 215 70% 35%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 180 60% 45%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 25% 40%;
+
+    --accent: 35 85% 55%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 20% 90%;
+    --input: 215 20% 90%;
+    --ring: 215 70% 35%;
+
+    /* Font size variables for better consistency */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+
+    /* Line height variables */
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 215 30% 12%;
+    --foreground: 210 20% 98%;
+
+    --card: 215 30% 15%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 215 30% 15%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 215 70% 50%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 180 60% 40%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 30% 20%;
+    --muted-foreground: 210 20% 70%;
+
+    --accent: 35 85% 55%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 30% 25%;
+    --input: 215 30% 25%;
+    --ring: 215 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug;
+  }
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  p {
+    @apply leading-relaxed;
+  }
+  .card {
+    @apply transition-all duration-300;
+  }
+
+  /* Enhanced button styles */
+  .btn, button[type="submit"], a[href].btn {
+    @apply font-heading font-medium rounded-md transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70;
+  }
+
+  /* Form element improvements */
+  input, textarea, select {
+    @apply font-sans text-base rounded-md transition-colors duration-200 focus:ring-2 focus:ring-primary/50 focus:border-primary/50;
+  }
+
+  /* Improved link styles */
+  a:not(.btn):not([role="button"]) {
+    @apply transition-colors duration-200 hover:text-primary;
+  }
+
+  /* Improved spacing for sections */
+  section {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Enhanced card styles */
+  .card {
+    @apply bg-white/80 backdrop-blur-sm border border-border/40 shadow-sm hover:shadow-md rounded-xl overflow-hidden;
+  }
+
+  /* Container styles */
+  .container {
+    @apply px-4 sm:px-6 lg:px-8 mx-auto;
+  }
+
+  /* Utility classes */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-effect {
+    @apply bg-white/70 backdrop-blur-sm border border-white/20;
+  }
+
+  .section-title {
+    @apply font-heading font-bold text-center mb-8;
+  }
+
+  .section-description {
+    @apply text-muted-foreground text-center max-w-3xl mx-auto mb-12 text-balance;
+  }
+
+  /* Accessibility enhancements */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+  }
+
+  /* Enhanced focus styles for keyboard navigation */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Skip to content link for keyboard users */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3 focus:bg-background focus:text-foreground focus:top-4 focus:left-4 focus:rounded-md;
+  }
+}
+
+/* Animation classes for subtle transitions */
+.animate-fade-in,
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-scale-in {
+  /* Start with opacity 0.9 to ensure text is always visible and readable */
+  opacity: 0.9;
+  animation-duration: 0.6s;
+  animation-fill-mode: both; /* Allows animation to go back to initial state */
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* Smoother, more natural easing */
+}
+
+/* Hover animations for interactive elements */
+.hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+/* Smooth page transitions */
+.page-transition {
+  transition: opacity 0.3s ease-in-out;
+}
+.page-transition-enter {
+  opacity: 0;
+}
+.page-transition-enter-active {
+  opacity: 1;
+}
+.page-transition-exit {
+  opacity: 1;
+}
+.page-transition-exit-active {
+  opacity: 0;
+}
+
+/* Animation classes for intersection observer */
+.animate-section-visible .animate-fade-in,
+.animate-section-visible .animate-fade-in-up,
+.animate-section-visible .animate-fade-in-down,
+.animate-section-visible .animate-scale-in {
+  animation-play-state: running;
+}
+
+/* Default state for elements before animation */
+section:not(.animate-section-visible) .animate-fade-in,
+section:not(.animate-section-visible) .animate-fade-in-up,
+section:not(.animate-section-visible) .animate-fade-in-down,
+section:not(.animate-section-visible) .animate-scale-in {
+  animation-play-state: paused;
+}
+
+/* Ensure sections are always visible */
+section {
+  opacity: 1;
+}
+
+/* Reset animation state when section is not visible */
+section:not(.animate-section-visible) .animate-fade-in,
+section:not(.animate-section-visible) .animate-fade-in-up,
+section:not(.animate-section-visible) .animate-fade-in-down,
+section:not(.animate-section-visible) .animate-scale-in {
+  opacity: 0.9;
+  animation: none; /* Completely reset the animation */
+}
+
+/* Animation delay classes */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
+.delay-700 {
+  animation-delay: 0.7s;
+}
