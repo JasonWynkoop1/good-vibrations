@@ -80,9 +80,6 @@ To push your code to the GitHub repository you've created, follow these steps:
 
 These commands will push all your code to the GitHub repository you've created.
 
-## GitHub Pages Deployment
-
-This project is configured to deploy to GitHub Pages. For detailed instructions on how to deploy the site to GitHub Pages, please see the [GitHub Pages Deployment Guide](GITHUB_PAGES_DEPLOYMENT.md).
 
 
 ## Squarespace Deployment with Custom Domain
@@ -117,15 +114,8 @@ export default defineConfig({
 })
 ```
 
-### 3. Create a CNAME File
 
-A file named `CNAME` has been created in the `public` directory with the domain name:
-
-```
-goodvibrationsspeech.net
-```
-
-### 4. Build the Site
+### 3. Build the Site
 
 To build the site for deployment, run:
 
@@ -135,7 +125,7 @@ npm run build:squarespace
 
 This will create a `dist` directory with the built site.
 
-### 5. Deploy to Squarespace
+### 4. Deploy to Squarespace
 
 To deploy the site to Squarespace:
 
@@ -149,7 +139,7 @@ Alternatively, you can use Squarespace's developer mode to deploy your site:
 1. Enable Developer Mode in your Squarespace site
 2. Follow Squarespace's documentation for deploying custom code
 
-### 6. Verify and Maintain
+### 5. Verify and Maintain
 
 - DNS changes may take up to 24-48 hours to propagate
 - Your custom domain configuration will need to be renewed annually along with your domain registration

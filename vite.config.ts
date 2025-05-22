@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/good-vibrations/', // GitHub Pages repository name
+  base: '/', // Root path for standard deployment
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
