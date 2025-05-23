@@ -180,6 +180,8 @@ To point your custom domain to GitHub Pages, you need to configure the following
 
 Note: These DNS settings are different from the Squarespace hosting configuration. You'll need to update your DNS settings at Squarespace to point to GitHub Pages instead of Squarespace's servers.
 
+**Important:** If you're having trouble adding GitHub Pages IP addresses to Squarespace, you may need to use Squarespace's advanced DNS settings or consider using Squarespace for hosting instead (see the Squarespace Deployment section below). Some domain registrars have limitations on the number of identical record types you can add.
+
 ### 5. Troubleshooting GitHub Pages Deployment
 
 If you encounter issues with your GitHub Pages deployment, here are some common problems and solutions:

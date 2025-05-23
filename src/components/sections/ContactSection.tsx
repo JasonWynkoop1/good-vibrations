@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -10,6 +10,85 @@ interface ContactSectionProps {
 }
 
 export function ContactSection({ sectionRef }: ContactSectionProps) {
+  // Form state
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  // Submission status state
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Handle input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate required fields
+    if (!formData.firstName || !formData.lastName || !formData.email) {
+      setSubmissionStatus('error');
+      setErrorMessage('Please fill in all required fields.');
+      return;
+    }
+
+    // Set submitting status
+    setSubmissionStatus('submitting');
+
+    try {
+      // Simulate API call with timeout
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // In a real application, you would send the form data to a server here
+      // For example:
+      // const response = await fetch('/api/contact', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(formData)
+      // });
+
+      // if (!response.ok) throw new Error('Failed to submit form');
+
+      // Success
+      setSubmissionStatus('success');
+
+      // Reset form after successful submission
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+
+      // Reset status after 5 seconds
+      setTimeout(() => {
+        setSubmissionStatus('idle');
+      }, 5000);
+    } catch (error) {
+      // Error
+      setSubmissionStatus('error');
+      setErrorMessage('Failed to submit form. Please try again later.');
+
+      // Reset error status after 5 seconds
+      setTimeout(() => {
+        setSubmissionStatus('idle');
+        setErrorMessage('');
+      }, 5000);
+    }
+  };
+
   return (
     <section ref={sectionRef} id="contact" className="container py-12 md:py-24 lg:py-32 mt-4 md:mt-8 relative overflow-hidden px-4 sm:px-6">
       <div className="absolute inset-0 bg-secondary/5 rounded-2xl md:rounded-3xl -z-10"></div>
@@ -22,7 +101,7 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
           Contact Our Team
         </h2>
         <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto">
-          Get in touch to learn how I can help with your students' communication needs through school-contracted services
+          Get in touch to learn how we can support your district's speech and language programs through comprehensive contracted services
         </p>
       </div>
 
@@ -101,69 +180,121 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
                 <p className="text-sm text-muted-foreground">Fill out this form and we'll respond within 24 hours.</p>
               </div>
 
-              <form className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div className="space-y-1 md:space-y-2">
-                    <Label htmlFor="firstName" className="text-primary font-medium text-sm">First Name*</Label>
-                    <Input
-                      type="text"
-                      id="firstName"
-                      placeholder="First name"
-                      className="border-primary/25 focus-visible:ring-primary hover:border-primary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-1 md:space-y-2">
-                    <Label htmlFor="lastName" className="text-primary font-medium text-sm">Last Name*</Label>
-                    <Input
-                      type="text"
-                      id="lastName"
-                      placeholder="Last name"
-                      className="border-primary/25 focus-visible:ring-primary hover:border-primary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                      required
-                    />
+              {submissionStatus === 'success' ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h3 className="text-sm font-medium text-green-800">Submission Successful!</h3>
+                      <div className="mt-2 text-sm text-green-700">
+                        <p>Thank you for your message. We'll get back to you within 24 hours.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              ) : (
+                <form className="space-y-5" onSubmit={handleSubmit}>
+                  {submissionStatus === 'error' && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-2">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <div className="ml-3">
+                          <h3 className="text-sm font-medium text-red-800">Error</h3>
+                          <div className="mt-2 text-sm text-red-700">
+                            <p>{errorMessage}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-1 md:space-y-2">
+                      <Label htmlFor="firstName" className="text-primary font-medium text-sm">First Name*</Label>
+                      <Input
+                        type="text"
+                        id="firstName"
+                        placeholder="First name"
+                        className="border-primary/25 focus-visible:ring-primary hover:border-primary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
+                        required
+                        value={formData.firstName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="space-y-1 md:space-y-2">
+                      <Label htmlFor="lastName" className="text-primary font-medium text-sm">Last Name*</Label>
+                      <Input
+                        type="text"
+                        id="lastName"
+                        placeholder="Last name"
+                        className="border-primary/25 focus-visible:ring-primary hover:border-primary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
+                        required
+                        value={formData.lastName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-1 md:space-y-2">
+                      <Label htmlFor="email" className="text-secondary font-medium text-sm">Email Address*</Label>
+                      <Input
+                        type="email"
+                        id="email"
+                        placeholder="Your email"
+                        className="border-secondary/25 focus-visible:ring-secondary hover:border-secondary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="space-y-1 md:space-y-2">
+                      <Label htmlFor="phone" className="text-secondary font-medium text-sm">Phone Number</Label>
+                      <Input
+                        type="tel"
+                        id="phone"
+                        placeholder="Your phone number"
+                        className="border-secondary/25 focus-visible:ring-secondary hover:border-secondary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
+                        value={formData.phone}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+
                   <div className="space-y-1 md:space-y-2">
-                    <Label htmlFor="email" className="text-secondary font-medium text-sm">Email Address*</Label>
-                    <Input
-                      type="email"
-                      id="email"
-                      placeholder="Your email"
-                      className="border-secondary/25 focus-visible:ring-secondary hover:border-secondary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                      required
+                    <Label htmlFor="message" className="text-accent font-medium text-sm">Additional Information</Label>
+                    <Textarea
+                      id="message"
+                      rows={3}
+                      placeholder="Please provide any additional details about your inquiry"
+                      className="border-accent/25 focus-visible:ring-accent hover:border-accent/50 transition-colors bg-white/70 shadow-sm text-sm min-h-[80px] md:min-h-[120px]"
+                      value={formData.message}
+                      onChange={handleChange}
                     />
                   </div>
-                  <div className="space-y-1 md:space-y-2">
-                    <Label htmlFor="phone" className="text-secondary font-medium text-sm">Phone Number</Label>
-                    <Input
-                      type="tel"
-                      id="phone"
-                      placeholder="Your phone number"
-                      className="border-secondary/25 focus-visible:ring-secondary hover:border-secondary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                    />
-                  </div>
-                </div>
 
 
-                <div className="space-y-1 md:space-y-2">
-                  <Label htmlFor="message" className="text-accent font-medium text-sm">Additional Information</Label>
-                  <Textarea
-                    id="message"
-                    rows={3}
-                    placeholder="Please provide any additional details about your inquiry"
-                    className="border-accent/25 focus-visible:ring-accent hover:border-accent/50 transition-colors bg-white/70 shadow-sm text-sm min-h-[80px] md:min-h-[120px]"
-                  />
-                </div>
-
-
-                <Button type="submit" className="w-full shadow-md hover:shadow-xl transition-all duration-500 bg-primary py-4 md:py-5 text-sm md:text-base relative overflow-hidden group">
-                  <span className="relative z-10">Submit Request</span>
-                  <span className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
-                </Button>
-              </form>
+                  <Button 
+                    type="submit" 
+                    className="w-full shadow-md hover:shadow-xl transition-all duration-500 bg-primary py-4 md:py-5 text-sm md:text-base relative overflow-hidden group"
+                    disabled={submissionStatus === 'submitting'}
+                  >
+                    <span className="relative z-10">
+                      {submissionStatus === 'submitting' ? 'Submitting...' : 'Submit Request'}
+                    </span>
+                    <span className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+                  </Button>
+                </form>
+              )}
             </CardContent>
           </Card>
         </div>
