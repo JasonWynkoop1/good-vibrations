@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:squarespace": "npm run build && echo 'Site built for Squarespace deployment. Upload the dist directory contents to your Squarespace site.'"
+    "build:squarespace": "npm run build && echo 'Site built for Squarespace deployment. Upload the dist directory contents to your Squarespace site.'",
+    "deploy:github": "rimraf docs dist && vite build && echo '' > docs/.nojekyll && echo 'Site built for GitHub Pages in the docs directory. Push to your repository to deploy.'"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -34,6 +35,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "globals": "^16.1.0",
     "postcss": "^8.4.31",
+    "rimraf": "^5.0.5",
     "tailwindcss": "^3.3.5",
     "typescript": "~5.3.3",
     "vite": "^5.0.0"

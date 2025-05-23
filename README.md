@@ -86,7 +86,7 @@ This project is configured to be deployed on GitHub Pages. The following steps h
 
 ### 1. Configure Vite for GitHub Pages
 
-The `vite.config.ts` file has been updated to output the build to the `docs` directory:
+The `vite.config.ts` file has been updated to output the build to the `docs` directory and use the correct base path for GitHub Pages:
 
 ```typescript
 import { defineConfig } from 'vite'
@@ -95,7 +95,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Root path for standard deployment
+  base: '/good-vibrations/', // Base path for GitHub Pages repository
   build: {
     outDir: 'docs', // Output to docs directory for GitHub Pages
   },
@@ -107,34 +107,42 @@ export default defineConfig({
 })
 ```
 
-### 2. Jekyll Configuration
+### 2. Disable Jekyll Processing
 
-A Jekyll configuration file (`_config.yml`) has been added to the `docs` directory to configure GitHub Pages:
+A `.nojekyll` file is automatically added to the `docs` directory during the build process. This file tells GitHub Pages not to process the site with Jekyll, ensuring that the site is served exactly as built.
 
-```yaml
-# Jekyll configuration for GitHub Pages
-title: Good Vibrations Speech & Language Therapy
-description: Providing exceptional speech and language therapy services for students through school contracts.
-baseurl: ""
-url: ""
-theme: jekyll-theme-primer
-```
-
-### 3. Disable Jekyll Processing (Optional)
-
-A `.nojekyll` file has been added to the `docs` directory to disable Jekyll processing. This ensures that GitHub Pages serves the site exactly as built without any Jekyll processing.
-
-### 4. Build and Deploy
-
-To build the site for GitHub Pages deployment, run:
+The `deploy:github` script includes a command to create this file:
 
 ```bash
-npm run build
+echo '' > docs/.nojekyll
 ```
 
-This will create the `docs` directory with the built site. When you push these changes to GitHub, GitHub Pages will automatically serve the site from the `docs` directory.
+This is important for React applications, as Jekyll processing can sometimes interfere with the proper functioning of the site.
 
-### 5. Configure GitHub Pages in Repository Settings
+### 3. Build and Deploy
+
+To build the site for GitHub Pages deployment, use the dedicated script:
+
+```bash
+npm run deploy:github
+```
+
+This script will:
+1. Clean both the `docs` and `dist` directories to avoid confusion
+2. Build the site with the correct GitHub Pages configuration
+3. Output the files to the `docs` directory
+
+After running this command, commit and push your changes to GitHub:
+
+```bash
+git add .
+git commit -m "Update site for GitHub Pages"
+git push
+```
+
+GitHub Pages will automatically serve the site from the `docs` directory.
+
+### 4. Configure GitHub Pages in Repository Settings
 
 In your GitHub repository settings:
 
@@ -145,6 +153,30 @@ In your GitHub repository settings:
 5. Click "Save"
 
 Your site will be available at `https://yourusername.github.io/yourrepositoryname/`.
+
+### 5. Troubleshooting GitHub Pages Deployment
+
+If you encounter issues with your GitHub Pages deployment, here are some common problems and solutions:
+
+#### Changes visible locally but not on GitHub Pages
+
+This is often caused by:
+
+1. **Using the wrong build command**: Always use `npm run deploy:github` instead of the standard build command to ensure the correct configuration is used.
+
+2. **Caching issues**: GitHub Pages and browsers may cache old versions of your site.
+   - Clear your browser cache or try in an incognito/private window
+   - Add `?v=timestamp` to the end of the URL to bypass cache (e.g., `https://yourusername.github.io/yourrepositoryname/?v=123`)
+
+3. **Incorrect directory being deployed**: Make sure GitHub Pages is set to deploy from the `docs` folder in the correct branch.
+
+4. **Base path issues**: Ensure vite.config.ts has the correct `base: '/yourrepositoryname/'` setting.
+
+5. **Deployment delay**: GitHub Pages can take a few minutes to update after pushing changes.
+
+#### Checking deployment status
+
+You can check the status of your GitHub Pages deployment in the "Actions" tab of your repository or in the "Pages" section of your repository settings.
 
 
 
