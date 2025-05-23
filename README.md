@@ -80,13 +80,13 @@ To push your code to the GitHub repository you've created, follow these steps:
 
 These commands will push all your code to the GitHub repository you've created.
 
-## GitHub Pages Deployment
+## GitHub Pages Deployment with Custom Domain
 
-This project is configured to be deployed on GitHub Pages. The following steps have been completed:
+This project is configured to be deployed on GitHub Pages with the custom domain "goodvibrationsspeech.net". The following steps have been completed:
 
-### 1. Configure Vite for GitHub Pages
+### 1. Configure Vite for GitHub Pages with Custom Domain
 
-The `vite.config.ts` file has been updated to output the build to the `docs` directory and use the correct base path for GitHub Pages:
+The `vite.config.ts` file has been updated to output the build to the `docs` directory and use the root path for the custom domain:
 
 ```typescript
 import { defineConfig } from 'vite'
@@ -95,7 +95,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/good-vibrations/', // Base path for GitHub Pages repository
+  base: '/', // Using root path for custom domain goodvibrationsspeech.net
   build: {
     outDir: 'docs', // Output to docs directory for GitHub Pages
   },
@@ -107,17 +107,21 @@ export default defineConfig({
 })
 ```
 
-### 2. Disable Jekyll Processing
+### 2. Custom Domain and Jekyll Processing
 
-A `.nojekyll` file is automatically added to the `docs` directory during the build process. This file tells GitHub Pages not to process the site with Jekyll, ensuring that the site is served exactly as built.
+A `.nojekyll` file and a `CNAME` file are automatically added to the `docs` directory during the build process:
 
-The `deploy:github` script includes a command to create this file:
+- The `.nojekyll` file tells GitHub Pages not to process the site with Jekyll, ensuring that the site is served exactly as built.
+- The `CNAME` file contains the custom domain name "goodvibrationsspeech.net" which tells GitHub Pages to serve the site at this domain.
+
+The `deploy:github` script includes commands to create these files:
 
 ```bash
 echo '' > docs/.nojekyll
+echo 'goodvibrationsspeech.net' > docs/CNAME
 ```
 
-This is important for React applications, as Jekyll processing can sometimes interfere with the proper functioning of the site.
+The `.nojekyll` file is important for React applications, as Jekyll processing can sometimes interfere with the proper functioning of the site. The `CNAME` file is required for GitHub Pages to use your custom domain.
 
 ### 3. Build and Deploy
 
@@ -142,7 +146,7 @@ git push
 
 GitHub Pages will automatically serve the site from the `docs` directory.
 
-### 4. Configure GitHub Pages in Repository Settings
+### 4. Configure GitHub Pages and Custom Domain in Repository Settings
 
 In your GitHub repository settings:
 
@@ -151,8 +155,30 @@ In your GitHub repository settings:
 3. Select the branch (usually `main`)
 4. Select the folder (`/docs`)
 5. Click "Save"
+6. In the "Custom domain" section, enter "goodvibrationsspeech.net"
+7. Click "Save"
+8. Check the "Enforce HTTPS" option once the DNS changes have propagated
 
-Your site will be available at `https://yourusername.github.io/yourrepositoryname/`.
+Your site will be available at `https://goodvibrationsspeech.net`
+
+#### DNS Configuration for GitHub Pages
+
+To point your custom domain to GitHub Pages, you need to configure the following DNS records with your domain provider (Squarespace):
+
+1. **A Records** - Point your apex domain to GitHub Pages' IP addresses:
+   ```
+   A @ 185.199.108.153
+   A @ 185.199.109.153
+   A @ 185.199.110.153
+   A @ 185.199.111.153
+   ```
+
+2. **CNAME Record** - Point the www subdomain to your GitHub Pages site:
+   ```
+   CNAME www yourusername.github.io
+   ```
+
+Note: These DNS settings are different from the Squarespace hosting configuration. You'll need to update your DNS settings at Squarespace to point to GitHub Pages instead of Squarespace's servers.
 
 ### 5. Troubleshooting GitHub Pages Deployment
 
@@ -166,13 +192,32 @@ This is often caused by:
 
 2. **Caching issues**: GitHub Pages and browsers may cache old versions of your site.
    - Clear your browser cache or try in an incognito/private window
-   - Add `?v=timestamp` to the end of the URL to bypass cache (e.g., `https://yourusername.github.io/yourrepositoryname/?v=123`)
+   - Add `?v=timestamp` to the end of the URL to bypass cache (e.g., `https://goodvibrationsspeech.net/?v=123`)
 
 3. **Incorrect directory being deployed**: Make sure GitHub Pages is set to deploy from the `docs` folder in the correct branch.
 
-4. **Base path issues**: Ensure vite.config.ts has the correct `base: '/yourrepositoryname/'` setting.
+4. **Base path issues**: With a custom domain, ensure vite.config.ts has `base: '/'` setting.
 
 5. **Deployment delay**: GitHub Pages can take a few minutes to update after pushing changes.
+
+#### Custom Domain Issues
+
+If you're having issues with your custom domain:
+
+1. **DNS propagation**: DNS changes can take 24-48 hours to fully propagate. Be patient.
+
+2. **HTTPS not working**: GitHub Pages needs time to provision an SSL certificate for your custom domain.
+   - Make sure "Enforce HTTPS" is checked in your GitHub Pages settings
+   - Wait up to 24 hours for the certificate to be issued
+
+3. **Domain verification**: GitHub may require you to verify ownership of your domain.
+   - Follow any verification steps in your GitHub repository settings
+
+4. **DNS configuration**: Double-check your DNS settings at Squarespace.
+   - Make sure you've configured the A records to point to GitHub Pages' IP addresses
+   - Ensure the www CNAME record is correctly set up
+
+5. **CNAME file issues**: Ensure the CNAME file in your docs directory contains only your domain name (goodvibrationsspeech.net) with no extra spaces or characters.
 
 #### Checking deployment status
 

@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/good-vibrations/', // GitHub Pages repository name
+  base: '/', // Using custom domain goodvibrationsspeech.net
   build: {
     outDir: 'docs', // Output to docs directory for GitHub Pages
   },

@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "build:squarespace": "npm run build && echo 'Site built for Squarespace deployment. Upload the dist directory contents to your Squarespace site.'",
-    "deploy:github": "rimraf docs dist && vite build && echo '' > docs/.nojekyll && echo 'Site built for GitHub Pages in the docs directory. Push to your repository to deploy.'"
+    "deploy:github": "rimraf docs dist && vite build && echo '' > docs/.nojekyll && echo 'goodvibrationsspeech.net' > docs/CNAME && echo 'Site built for GitHub Pages in the docs directory with custom domain goodvibrationsspeech.net. Push to your repository to deploy.'"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
