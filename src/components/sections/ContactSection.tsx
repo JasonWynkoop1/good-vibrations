@@ -147,21 +147,6 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
                   </div>
                 </div>
 
-                <div className="space-y-1 md:space-y-2">
-                  <Label htmlFor="service" className="text-accent font-medium text-sm">Service of Interest*</Label>
-                  <select
-                    id="service"
-                    className="w-full border border-accent/25 focus-visible:ring-accent hover:border-accent/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10 rounded-md px-3"
-                    required
-                  >
-                    <option value="" disabled selected>Select a service</option>
-                    <option value="speech">Speech Therapy</option>
-                    <option value="language">Language Therapy</option>
-                    <option value="swallowing">Swallowing Therapy</option>
-                    <option value="evaluation">Initial Evaluation</option>
-                    <option value="other">Other Services</option>
-                  </select>
-                </div>
 
                 <div className="space-y-1 md:space-y-2">
                   <Label htmlFor="message" className="text-accent font-medium text-sm">Additional Information</Label>
@@ -173,19 +158,6 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
                   />
                 </div>
 
-                <div className="flex items-start space-x-2">
-                  <div className="flex items-center h-5 mt-1">
-                    <input
-                      id="terms"
-                      type="checkbox"
-                      className="w-4 h-4 border border-primary/25 rounded bg-white/70"
-                      required
-                    />
-                  </div>
-                  <Label htmlFor="terms" className="text-xs text-muted-foreground">
-                    By submitting this form, I agree to Good Vibrations' <a href="javascript:void(0)" className="text-primary hover:underline">Privacy Policy</a> and consent to being contacted regarding my inquiry.
-                  </Label>
-                </div>
 
                 <Button type="submit" className="w-full shadow-md hover:shadow-xl transition-all duration-500 bg-primary py-4 md:py-5 text-sm md:text-base relative overflow-hidden group">
                   <span className="relative z-10">Submit Request</span>

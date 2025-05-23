@@ -85,6 +85,18 @@ module.exports = {
           "0%": { opacity: "0.7", transform: "scale(0.98)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "bounce-subtle": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
+        },
+        "wiggle": {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -94,6 +106,9 @@ module.exports = {
         "fade-in-down": "fade-in-down 0.8s ease-out",
         "scale-in": "scale-in 0.8s ease-out",
         "section-visible": "none", // This is a placeholder for the Intersection Observer
+        "spin-slow": "spin-slow 3s linear infinite",
+        "bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
+        "wiggle": "wiggle 1s ease-in-out infinite",
       },
     },
   },
