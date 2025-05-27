@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Card, CardContent } from '../ui/card';
+import React, { useState, useEffect } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
+import emailjs from 'emailjs-com';
 
 interface ContactSectionProps {
   sectionRef: React.RefObject<HTMLElement>;
@@ -22,6 +22,15 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
   // Submission status state
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // EmailJS configuration
+  const EMAILJS_SERVICE_ID = "service_u9yby3u";
+  const EMAILJS_TEMPLATE_ID = "template_t7ezin9";
+  const EMAILJS_PUBLIC_KEY = "NNQWAgLIuKPCR_lwI";
+
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
 
   // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -47,18 +56,24 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
     setSubmissionStatus('submitting');
 
     try {
-      // Simulate API call with timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone || 'Not provided',
+        message: formData.message || 'No additional information provided',
+      };
 
-      // In a real application, you would send the form data to a server here
-      // For example:
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
 
-      // if (!response.ok) throw new Error('Failed to submit form');
+      console.log('Email sent successfully:', response);
 
       // Success
       setSubmissionStatus('success');
@@ -78,6 +93,7 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
       }, 5000);
     } catch (error) {
       // Error
+      console.error('Email sending failed:', error);
       setSubmissionStatus('error');
       setErrorMessage('Failed to submit form. Please try again later.');
 
@@ -90,214 +106,260 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="container py-12 md:py-24 lg:py-32 mt-4 md:mt-8 relative overflow-hidden px-4 sm:px-6">
-      <div className="absolute inset-0 bg-secondary/5 rounded-2xl md:rounded-3xl -z-10"></div>
-
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center px-4 py-1.5 bg-primary/10 rounded-full mb-4">
-          <span className="text-xs font-medium text-primary">Request Information</span>
-        </div>
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl text-primary mb-4">
-          Contact Our Team
+    <section 
+      ref={sectionRef} 
+      id="contact" 
+      className="container py-16 md:py-24 max-w-3xl mx-auto"
+    >
+      {/* Minimalist header with improved visual hierarchy */}
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-medium mb-4 text-blue-600">
+          Contact Us
         </h2>
-        <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto">
-          Get in touch to learn how we can support your district's speech and language programs through comprehensive contracted services
+        <p className="text-gray-500 max-w-md mx-auto">
+          We're here to support your district's speech and language programs.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:gap-16 md:grid-cols-12 items-start">
-        <div className="md:col-span-5 lg:col-span-4">
-          <div className="bg-white/40 backdrop-blur-sm p-5 md:p-8 rounded-2xl border border-primary/20 shadow-md">
-            <div className="space-y-4 md:space-y-6">
-              <div className="flex items-center p-3 md:p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md hover:bg-white/80 transition-all duration-300 border border-primary/10 transform hover:translate-x-2 hover:translate-y-[-2px]">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shadow-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                </div>
-                <div className="ml-3 md:ml-4">
-                  <div className="font-medium text-xs md:text-sm text-muted-foreground">Email</div>
-                  <a href="mailto:goodvibrations.speech@gmail.com" className="text-primary hover:underline font-medium text-sm md:text-base whitespace-nowrap block">
-                    goodvibrations.speech@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center p-3 md:p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md hover:bg-white/80 transition-all duration-300 border border-secondary/10 transform hover:translate-x-2 hover:translate-y-[-2px]">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shadow-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                </div>
-                <div className="ml-3 md:ml-4">
-                  <div className="font-medium text-xs md:text-sm text-muted-foreground">Phone</div>
-                  <a href="tel:+15742651847" className="text-secondary hover:underline font-medium text-sm md:text-base">
-                    (574) 265-1847
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-8 border-t border-primary/10">
-              <h3 className="text-lg font-semibold mb-4 text-primary">Business Hours</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Monday - Friday</span>
-                  <span className="text-sm font-medium">8:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Saturday</span>
-                  <span className="text-sm font-medium">9:00 AM - 2:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Sunday</span>
-                  <span className="text-sm font-medium">Closed</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-8 border-t border-primary/10">
-              <h3 className="text-lg font-semibold mb-4 text-primary">Connect With Us</h3>
-              <div className="flex space-x-3">
-                <a href="javascript:void(0)" aria-label="Facebook" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 text-muted-foreground hover:text-primary hover:bg-white transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                  </svg>
-                </a>
-                <a href="javascript:void(0)" aria-label="LinkedIn" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/70 text-muted-foreground hover:text-primary hover:bg-white transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect width="4" height="12" x="2" y="9"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                </a>
-              </div>
-            </div>
+      {/* Contact quick links with improved styling */}
+      <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-10 text-center">
+        <div className="flex items-center bg-white p-3 rounded-lg shadow-sm border border-gray-100 transition-all hover:shadow-md">
+          <div className="bg-blue-50 p-2 rounded-full mr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+          </div>
+          <div className="text-left">
+            <p className="text-blue-600 font-medium text-sm">Email</p>
+            <a href="mailto:goodvibrations.speech@gmail.com" className="text-gray-700 hover:text-blue-600 transition-colors">
+              goodvibrations.speech@gmail.com
+            </a>
           </div>
         </div>
+        <div className="flex items-center bg-white p-3 rounded-lg shadow-sm border border-gray-100 transition-all hover:shadow-md">
+          <div className="bg-blue-50 p-2 rounded-full mr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+          </div>
+          <div className="text-left">
+            <p className="text-blue-600 font-medium text-sm">Phone</p>
+            <a href="tel:+15742651847" className="text-gray-700 hover:text-blue-600 transition-colors">
+              (574) 265-1847
+            </a>
+          </div>
+        </div>
+      </div>
 
-        <div className="md:col-span-7 lg:col-span-8">
-          <Card className="shadow-xl border border-white/30 hover:border-white/50 transition-all duration-500 hover:scale-[1.01] overflow-hidden bg-white/50 backdrop-blur-sm">
-            <div className="h-2 md:h-3 bg-primary"></div>
-            <CardContent className="pt-6 md:pt-8 px-4 md:px-8">
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-primary mb-2">Request Information</h3>
-                <p className="text-sm text-muted-foreground">Fill out this form and we'll respond within 24 hours.</p>
+      <div className="bg-white border border-blue-100 rounded-lg p-6 md:p-8 shadow-md">
+        {/* Form header */}
+        <div className="mb-6 pb-4 border-b border-gray-100">
+          <h3 className="text-xl font-medium text-gray-800 mb-2">Send us a message</h3>
+        </div>
+
+        {submissionStatus === 'success' ? (
+          <div className="bg-green-50 p-6 text-center rounded-lg border border-green-100">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+              <svg className="h-8 w-8 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-medium text-green-700 mb-2">Message Sent</h3>
+            <p className="text-green-600 mb-4">
+              Thank you for reaching out. We'll be in touch with you shortly.
+            </p>
+            <button 
+              onClick={() => setSubmissionStatus('idle')}
+              className="text-sm text-blue-600 hover:text-blue-800 underline"
+            >
+              Send another message
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {submissionStatus === 'error' && (
+              <div className="bg-rose-50 p-4 rounded-lg border border-rose-100 flex items-start">
+                <div className="flex-shrink-0 mr-3">
+                  <svg className="h-5 w-5 text-rose-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <p className="text-rose-700">{errorMessage}</p>
+              </div>
+            )}
+
+            {/* Personal Information Section */}
+            <div className="mb-8">
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-50 w-6 h-6 rounded-full flex items-center justify-center mr-2">
+                  <span className="text-blue-600 text-sm font-medium">1</span>
+                </div>
+                <h4 className="text-gray-800 font-medium">Personal Information</h4>
               </div>
 
-              {submissionStatus === 'success' ? (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <svg className="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-green-800">Submission Successful!</h3>
-                      <div className="mt-2 text-sm text-green-700">
-                        <p>Thank you for your message. We'll get back to you within 24 hours.</p>
-                      </div>
-                    </div>
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <Label htmlFor="firstName" className="text-gray-700 font-normal mb-1 block">
+                    First Name <span className="text-rose-500">*</span>
+                  </Label>
+                  <Input
+                    type="text"
+                    id="firstName"
+                    placeholder="First name"
+                    className="w-full border-gray-200 focus:border-blue-400 focus:ring-0 h-10 rounded transition-colors"
+                    required
+                    value={formData.firstName}
+                    onChange={handleChange}
+                  />
+                  {formData.firstName && <p className="text-xs text-green-600 mt-1">✓ Looks good</p>}
                 </div>
-              ) : (
-                <form className="space-y-5" onSubmit={handleSubmit}>
-                  {submissionStatus === 'error' && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-2">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                        <div className="ml-3">
-                          <h3 className="text-sm font-medium text-red-800">Error</h3>
-                          <div className="mt-2 text-sm text-red-700">
-                            <p>{errorMessage}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                <div>
+                  <Label htmlFor="lastName" className="text-gray-700 font-normal mb-1 block">
+                    Last Name <span className="text-rose-500">*</span>
+                  </Label>
+                  <Input
+                    type="text"
+                    id="lastName"
+                    placeholder="Last name"
+                    className="w-full border-gray-200 focus:border-blue-400 focus:ring-0 h-10 rounded transition-colors"
+                    required
+                    value={formData.lastName}
+                    onChange={handleChange}
+                  />
+                  {formData.lastName && <p className="text-xs text-green-600 mt-1">✓ Looks good</p>}
+                </div>
+              </div>
+            </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-1 md:space-y-2">
-                      <Label htmlFor="firstName" className="text-primary font-medium text-sm">First Name*</Label>
-                      <Input
-                        type="text"
-                        id="firstName"
-                        placeholder="First name"
-                        className="border-primary/25 focus-visible:ring-primary hover:border-primary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                        required
-                        value={formData.firstName}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="space-y-1 md:space-y-2">
-                      <Label htmlFor="lastName" className="text-primary font-medium text-sm">Last Name*</Label>
-                      <Input
-                        type="text"
-                        id="lastName"
-                        placeholder="Last name"
-                        className="border-primary/25 focus-visible:ring-primary hover:border-primary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                        required
-                        value={formData.lastName}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
+            {/* Contact Information Section */}
+            <div className="mb-8">
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-50 w-6 h-6 rounded-full flex items-center justify-center mr-2">
+                  <span className="text-blue-600 text-sm font-medium">2</span>
+                </div>
+                <h4 className="text-gray-800 font-medium">Contact Information</h4>
+              </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-1 md:space-y-2">
-                      <Label htmlFor="email" className="text-secondary font-medium text-sm">Email Address*</Label>
-                      <Input
-                        type="email"
-                        id="email"
-                        placeholder="Your email"
-                        className="border-secondary/25 focus-visible:ring-secondary hover:border-secondary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="space-y-1 md:space-y-2">
-                      <Label htmlFor="phone" className="text-secondary font-medium text-sm">Phone Number</Label>
-                      <Input
-                        type="tel"
-                        id="phone"
-                        placeholder="Your phone number"
-                        className="border-secondary/25 focus-visible:ring-secondary hover:border-secondary/50 transition-colors bg-white/70 shadow-sm text-sm h-9 md:h-10"
-                        value={formData.phone}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <Label htmlFor="email" className="text-gray-700 font-normal mb-1 block">
+                    Email <span className="text-rose-500">*</span>
+                  </Label>
+                  <Input
+                    type="email"
+                    id="email"
+                    placeholder="your@email.com"
+                    className="w-full border-gray-200 focus:border-blue-400 focus:ring-0 h-10 rounded transition-colors"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  {formData.email && <p className="text-xs text-green-600 mt-1">✓ Looks good</p>}
+                </div>
+                <div>
+                  <Label htmlFor="phone" className="text-gray-700 font-normal mb-1 block">
+                    Phone <span className="text-gray-400 text-xs">(Optional)</span>
+                  </Label>
+                  <Input
+                    type="tel"
+                    id="phone"
+                    placeholder="(123) 456-7890"
+                    className="w-full border-gray-200 focus:border-blue-400 focus:ring-0 h-10 rounded transition-colors"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
 
+            {/* Message Section */}
+            <div className="mb-8">
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-50 w-6 h-6 rounded-full flex items-center justify-center mr-2">
+                  <span className="text-blue-600 text-sm font-medium">3</span>
+                </div>
+                <h4 className="text-gray-800 font-medium">Your Message</h4>
+              </div>
 
-                  <div className="space-y-1 md:space-y-2">
-                    <Label htmlFor="message" className="text-accent font-medium text-sm">Additional Information</Label>
-                    <Textarea
-                      id="message"
-                      rows={3}
-                      placeholder="Please provide any additional details about your inquiry"
-                      className="border-accent/25 focus-visible:ring-accent hover:border-accent/50 transition-colors bg-white/70 shadow-sm text-sm min-h-[80px] md:min-h-[120px]"
-                      value={formData.message}
-                      onChange={handleChange}
-                    />
-                  </div>
+              <div>
+                <Label htmlFor="message" className="text-gray-700 font-normal mb-1 block">
+                  Message <span className="text-gray-400 text-xs">(Optional)</span>
+                </Label>
+                <Textarea
+                  id="message"
+                  rows={4}
+                  placeholder="How can we help you?"
+                  className="w-full border-gray-200 focus:border-blue-400 focus:ring-0 rounded resize-y transition-colors"
+                  value={formData.message}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
 
+            {/* Submit Section */}
+            <div className="pt-4 border-t border-gray-100">
+              <div className="flex items-center mb-6">
+                <div className="bg-blue-50 w-6 h-6 rounded-full flex items-center justify-center mr-2">
+                  <span className="text-blue-600 text-sm font-medium">4</span>
+                </div>
+                <h4 className="text-gray-800 font-medium">Submit Your Request</h4>
+              </div>
 
-                  <Button 
-                    type="submit" 
-                    className="w-full shadow-md hover:shadow-xl transition-all duration-500 bg-primary py-4 md:py-5 text-sm md:text-base relative overflow-hidden group"
-                    disabled={submissionStatus === 'submitting'}
-                  >
-                    <span className="relative z-10">
-                      {submissionStatus === 'submitting' ? 'Submitting...' : 'Submit Request'}
-                    </span>
-                    <span className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
-                  </Button>
-                </form>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+              <div className="flex items-center mb-6">
+                <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                  <div 
+                    className="bg-blue-600 h-full rounded-full transition-all duration-500"
+                    style={{ 
+                      width: `${Math.min(
+                        100, 
+                        (formData.firstName ? 25 : 0) + 
+                        (formData.lastName ? 25 : 0) + 
+                        (formData.email ? 25 : 0) + 
+                        (formData.message ? 25 : 0)
+                      )}%` 
+                    }}
+                  ></div>
+                </div>
+                <span className="ml-3 text-sm text-gray-500">
+                  {Math.min(
+                    100, 
+                    (formData.firstName ? 25 : 0) + 
+                    (formData.lastName ? 25 : 0) + 
+                    (formData.email ? 25 : 0) + 
+                    (formData.message ? 25 : 0)
+                  )}%
+                </span>
+              </div>
+
+              <Button 
+                type="submit" 
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md"
+                disabled={submissionStatus === 'submitting'}
+              >
+                {submissionStatus === 'submitting' ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending your message...
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center">
+                    Send Message
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                )}
+              </Button>
+              <p className="text-center text-xs text-gray-500 mt-4">
+                By submitting this form, you agree to our <a href="#" className="text-blue-600 hover:underline">privacy policy</a>.
+              </p>
+            </div>
+          </form>
+        )}
       </div>
     </section>
   );

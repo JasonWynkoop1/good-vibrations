@@ -1,6 +1,5 @@
 import React from 'react';
 import headshotImg from '../../assets/headshot.jpg';
-import { Button } from '../ui/button';
 
 interface TeamSectionProps {
   sectionRef: React.RefObject<HTMLElement>;
@@ -97,12 +96,6 @@ export function TeamSection({ sectionRef }: TeamSectionProps) {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-12 text-center">
-        <Button asChild variant="outline" className="border-primary/20 text-primary hover:text-primary/80 hover:bg-primary/5">
-          <a href="#contact">Schedule a Consultation</a>
-        </Button>
       </div>
     </section>
   );

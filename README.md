@@ -291,3 +291,84 @@ Alternatively, you can use Squarespace's developer mode to deploy your site:
 - Make sure to update your Squarespace site whenever you make changes to your code
 
 With these steps completed, your site should be accessible at "goodvibrationsspeech.net" with HTTPS security provided by Squarespace.
+
+## Email Configuration with EmailJS
+
+This project uses EmailJS to send emails from the contact form without requiring a backend server. Follow these steps to set up EmailJS for your site:
+
+### 1. Create an EmailJS Account
+
+1. Go to [EmailJS](https://www.emailjs.com/) and sign up for a free account
+2. Verify your email address
+
+### 2. Add an Email Service
+
+1. In your EmailJS dashboard, go to "Email Services"
+2. Click "Add New Service"
+3. Choose your email provider (Gmail, Outlook, etc.)
+4. Follow the instructions to connect your email account
+5. Give your service a name (e.g., "Good Vibrations Contact")
+6. Note down the **Service ID** (you'll need this later)
+
+### 3. Create an Email Template
+
+1. In your EmailJS dashboard, go to "Email Templates"
+2. Click "Create New Template"
+3. Design your email template with the following variables:
+   - `{{firstName}}` - The sender's first name
+   - `{{lastName}}` - The sender's last name
+   - `{{email}}` - The sender's email address
+   - `{{phone}}` - The sender's phone number
+   - `{{message}}` - The message content
+4. Save your template
+5. Note down the **Template ID** (you'll need this later)
+
+### 4. Get Your User ID
+
+1. In your EmailJS dashboard, go to "Account" > "API Keys"
+2. Copy your **Public Key** (this is your User ID)
+
+### 5. Install EmailJS in Your Project
+
+```bash
+npm install emailjs-com
+```
+
+### 6. Configure EmailJS in Your Code
+
+Open `src/components/sections/ContactSection.tsx` and update the following constants with your actual IDs:
+
+```typescript
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // e.g., "service_abc123"
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // e.g., "template_xyz789"
+const EMAILJS_USER_ID = "YOUR_USER_ID"; // e.g., "user_def456"
+```
+
+### 7. Test the Contact Form
+
+1. Run your site locally with `npm run dev`
+2. Fill out the contact form and submit it
+3. Check that you receive the email at the address associated with your EmailJS service
+
+### 8. Deploy Your Changes
+
+After confirming that the email functionality works locally, deploy your changes to GitHub Pages:
+
+```bash
+npm run deploy:github
+git add .
+git commit -m "Add EmailJS integration for contact form"
+git push
+```
+
+### 9. Troubleshooting
+
+If you encounter issues with the email sending:
+
+1. **Check the browser console** for any error messages
+2. **Verify your EmailJS credentials** are correct
+3. **Check your EmailJS dashboard** for any failed email attempts
+4. **Test with a different email service** if your current one has restrictions
+5. **Check your email spam folder** as test emails might end up there
+
+Note: The free tier of EmailJS allows 200 emails per month. For higher volumes, you'll need to upgrade to a paid plan.

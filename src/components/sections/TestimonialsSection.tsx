@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../ui/button';
 
 interface TestimonialsSectionProps {
   sectionRef: React.RefObject<HTMLElement>;
@@ -186,11 +185,6 @@ export function TestimonialsSection({ sectionRef }: TestimonialsSectionProps) {
         </div>
       </div>
 
-      <div className="mt-12 text-center">
-        <Button asChild className="shadow-md hover:shadow-xl transition-all duration-300 px-6 py-4 rounded-xl bg-primary text-white border border-white/20 hover:scale-105">
-          <a href="#contact">Schedule a Consultation</a>
-        </Button>
-      </div>
     </section>
   );
 }
