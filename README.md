@@ -121,7 +121,7 @@ echo '' > docs/.nojekyll
 echo 'goodvibrationsspeech.net' > docs/CNAME
 ```
 
-The `.nojekyll` file i s important for React applications, as Jekyll processing can sometimes interfere with the proper functioning of the site. The `CNAME` file is required for GitHub Pages to use your custom domain.
+The `.nojekyll` file is important for React applications, as Jekyll processing can sometimes interfere with the proper functioning of the site. The `CNAME` file is required for GitHub Pages to use your custom domain.
 
 ### 3. Build and Deploy
 
