@@ -9,7 +9,7 @@ export function MobileMenu({isMenuOpen, mainNavItems, setIsMenuOpen}: MobileMenu
 
     return (
         <div
-            className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 fixed top-16 md:top-20 left-0 right-0 z-40">
             <nav className="container py-4">
                 <ul className="flex flex-col space-y-4">
                     {mainNavItems.map((item) => (
