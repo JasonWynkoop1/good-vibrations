@@ -12,7 +12,7 @@ export function Header({ mainNavItems, isMenuOpen, toggleMenu }: HeaderProps) {
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-border/40 shadow-sm">
       <div className="container flex h-20 md:h-24 items-center justify-between">
         <a href="#home" className="flex items-center">
-          <img src={logoImg} alt="Good Vibrations Speech and Language" className="h-16 md:h-20 w-auto" />
+          <img src={logoImg} alt="Good Vibrations Speech and Language" className="h-14 md:h-16 w-auto" />
         </a>
 
         <nav className="hidden md:flex items-center space-x-1">

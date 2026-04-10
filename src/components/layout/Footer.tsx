@@ -1,4 +1,4 @@
-import logoImg from '../../assets/logo-0.png';
+import logoLightImg from '../../assets/logo-light.png';
 
 export function Footer() {
   return (
@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           <div className="md:col-span-1">
-            <img src={logoImg} alt="Good Vibrations" className="h-20 w-auto mb-4 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]" />
+            <img src={logoLightImg} alt="Good Vibrations" className="h-20 w-auto mb-4" />
             <p className="text-sm text-white/60 mb-4">
               School-based speech therapy services supporting student communication, confidence, and independence.
             </p>
