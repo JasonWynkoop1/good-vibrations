@@ -8,7 +8,7 @@ export function MobileMenu({ isMenuOpen, mainNavItems, setIsMenuOpen }: MobileMe
   if (!isMenuOpen) return null;
 
   return (
-    <div className="md:hidden border-t border-border/40 bg-white/95 backdrop-blur-lg fixed top-16 left-0 right-0 z-40 shadow-lg">
+    <div className="md:hidden border-t border-border/40 bg-white/95 backdrop-blur-lg fixed top-20 left-0 right-0 z-40 shadow-lg">
       <nav className="container py-4">
         <ul className="flex flex-col space-y-1">
           {mainNavItems.map((item) => (
