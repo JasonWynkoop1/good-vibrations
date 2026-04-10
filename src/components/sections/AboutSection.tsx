@@ -1,4 +1,5 @@
 import React from 'react';
+import headshotImg from '../../assets/headshot.jpg';
 
 interface AboutSectionProps {
   sectionRef: React.RefObject<HTMLElement>;
@@ -6,137 +7,65 @@ interface AboutSectionProps {
 
 export function AboutSection({ sectionRef }: AboutSectionProps) {
   return (
-    <section ref={sectionRef} id="about" className="container py-12 md:py-24 lg:py-32 mt-4 md:mt-8 relative overflow-hidden px-4 sm:px-6">
-      <div className="absolute inset-0 bg-accent/5 rounded-2xl md:rounded-3xl -z-10"></div>
+    <section ref={sectionRef} id="about" className="relative overflow-hidden">
+      {/* Mission & Values */}
+      <div className="bg-white py-16 md:py-24">
+        <div className="container px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <span className="text-xs font-heading font-medium text-primary uppercase tracking-widest">Our Mission</span>
+            <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto mt-4 leading-relaxed animate-fade-in">
+              Good Vibrations Speech and Language is committed to delivering high quality, evidence-based speech and language services that support student success in the educational setting. Through collaboration, data driven practices, and engaging therapy approaches, we help students build the communication skills necessary for academic and social growth.
+            </p>
+          </div>
 
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center px-4 py-1.5 bg-accent/10 rounded-full mb-4 animate-bounce-subtle">
-          <span className="text-xs font-medium text-accent">About Good Vibrations</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-[hsl(var(--surface-lavender))] rounded-2xl p-6 text-center border border-primary/8 animate-fade-in-up delay-100 hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 className="font-heading font-semibold text-foreground mb-2">Student-Centered Care</h3>
+              <p className="text-sm text-muted-foreground">We prioritize each student's individual strengths, needs, and communication goals.</p>
+            </div>
+
+            <div className="bg-[hsl(var(--surface-blue))] rounded-2xl p-6 text-center border border-secondary/8 animate-fade-in-up delay-200 hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--secondary))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3 className="font-heading font-semibold text-foreground mb-2">Engagement & Motivation</h3>
+              <p className="text-sm text-muted-foreground">We believe students learn best when therapy is meaningful, interactive, and enjoyable.</p>
+            </div>
+
+            <div className="bg-[hsl(var(--surface-gold))] rounded-2xl p-6 text-center border border-accent/15 animate-fade-in-up delay-300 hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--accent))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+              </div>
+              <h3 className="font-heading font-semibold text-foreground mb-2">Data-Driven Practice</h3>
+              <p className="text-sm text-muted-foreground">We use clear data and progress monitoring to guide instruction and demonstrate growth.</p>
+            </div>
+          </div>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl text-accent mb-4 animate-fade-in-up">
-          Our Speech and Language Approach
-        </h2>
-        <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto animate-fade-in delay-200">
-          We provide effective speech and language therapy services to schools, helping students develop essential communication skills for academic and social success.
-        </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:gap-16 md:grid-cols-2 items-center">
-        <div className="bg-white/40 backdrop-blur-sm p-5 md:p-8 rounded-2xl border border-accent/20 shadow-md">
-          <div className="space-y-6 md:space-y-8">
-            <div className="animate-fade-in-up delay-300">
-              <h3 className="text-xl md:text-2xl font-semibold text-accent mb-3">Our Mission</h3>
-              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                At Good Vibrations, we are dedicated to helping every student develop effective communication skills. We provide evidence-based speech therapy services to schools that enable students to express themselves clearly and build meaningful connections with peers and educators.
+      {/* About Me */}
+      <div className="bg-gradient-to-br from-[hsl(var(--surface-lavender))] to-[hsl(var(--surface-blue))] py-16 md:py-24">
+        <div className="container px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+            <div className="flex-shrink-0 animate-scale-in">
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-4 border-white shadow-xl shadow-primary/10">
+                <img src={headshotImg} alt="Kayla Wynkoop" className="w-full h-full object-cover object-center" />
+              </div>
+            </div>
+            <div className="animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 mb-2">
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground">Kayla Wynkoop, M.A., CCC-SLP</h2>
+              </div>
+              <div className="inline-flex items-center px-3 py-1 bg-primary/10 rounded-full mb-4">
+                <span className="text-xs font-heading font-medium text-primary">12 Years of Experience</span>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">
+                Hi, I'm Kayla, a school-based speech-language pathologist and the owner of Good Vibrations Speech and Language. I'm passionate about helping students find their voice and build confidence in their communication skills. I've worked with a wide range of learners, including students in essential skills classrooms and those using AAC, and I love creating therapy sessions that are both engaging and meaningful. My goal is always to make students feel successful, supported, and excited to learn.
               </p>
             </div>
-
-            <div className="animate-fade-in-up delay-400">
-              <h3 className="text-xl md:text-2xl font-semibold text-primary mb-3">Our Core Values</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start group hover:scale-105 transition-transform duration-300">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-0.5 mr-3 flex-shrink-0 group-hover:animate-bounce">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">Effective Learning</span>
-                    <p className="text-sm text-muted-foreground">We implement evidence-based techniques and structured activities to optimize learning outcomes for each student.</p>
-                  </div>
-                </li>
-                <li className="flex items-start group hover:scale-105 transition-transform duration-300">
-                  <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mt-0.5 mr-3 flex-shrink-0 group-hover:animate-wiggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">Personalized Care</span>
-                    <p className="text-sm text-muted-foreground">We value each student's unique needs and strengths, providing individualized support throughout their therapy journey.</p>
-                  </div>
-                </li>
-                <li className="flex items-start group hover:scale-105 transition-transform duration-300">
-                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent mt-0.5 mr-3 flex-shrink-0 group-hover:animate-spin-slow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">Innovative Approach</span>
-                    <p className="text-sm text-muted-foreground">We develop engaging therapeutic methods that maintain student interest while achieving measurable progress.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-6 md:space-y-8">
-          <div className="bg-white/40 backdrop-blur-sm p-5 md:p-8 rounded-2xl border border-secondary/20 shadow-md hover:shadow-xl transition-all duration-500 animate-fade-in-up delay-300">
-            <h3 className="text-xl md:text-2xl font-semibold text-secondary mb-3">Our Therapeutic Approach</h3>
-            <p className="text-muted-foreground leading-relaxed text-base">
-              We develop personalized therapy plans for each student. Every session and activity is carefully designed to address individual needs and progressively enhance communication abilities.
-            </p>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <div className="bg-white/50 rounded-lg p-3 border border-secondary/10 hover:scale-105 transition-transform duration-300 hover:bg-secondary/5">
-                <h4 className="font-medium text-sm">Individualized</h4>
-                <p className="text-xs text-muted-foreground mt-1">Therapy activities tailored to individual interests and needs.</p>
-              </div>
-              <div className="bg-white/50 rounded-lg p-3 border border-secondary/10 hover:scale-105 transition-transform duration-300 hover:bg-secondary/5">
-                <h4 className="font-medium text-sm">Evidence-Based</h4>
-                <p className="text-xs text-muted-foreground mt-1">Research-supported methods with proven clinical outcomes.</p>
-              </div>
-              <div className="bg-white/50 rounded-lg p-3 border border-secondary/10 hover:scale-105 transition-transform duration-300 hover:bg-secondary/5">
-                <h4 className="font-medium text-sm">Collaborative</h4>
-                <p className="text-xs text-muted-foreground mt-1">We partner with educators and families to ensure consistent support.</p>
-              </div>
-              <div className="bg-white/50 rounded-lg p-3 border border-secondary/10 hover:scale-105 transition-transform duration-300 hover:bg-secondary/5">
-                <h4 className="font-medium text-sm">Progress Tracking</h4>
-                <p className="text-xs text-muted-foreground mt-1">Comprehensive assessment and documentation of measurable improvements.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white/40 backdrop-blur-sm p-5 md:p-8 rounded-2xl border border-primary/20 shadow-md hover:shadow-xl transition-all duration-500 animate-fade-in-up delay-400">
-            <h3 className="text-xl md:text-2xl font-semibold text-primary mb-3">Our Service Offerings</h3>
-            <p className="text-muted-foreground leading-relaxed text-base mb-4">
-              We have tons of fun activities to help students with all kinds of communication superpowers at your school!
-            </p>
-            <ul className="space-y-2">
-              <li className="flex items-start group hover:scale-105 transition-transform duration-300">
-                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-0.5 mr-3 flex-shrink-0 group-hover:animate-bounce-subtle">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <p className="text-sm">Sound Safari - Making tricky sounds super fun to learn!</p>
-              </li>
-              <li className="flex items-start group hover:scale-105 transition-transform duration-300">
-                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-0.5 mr-3 flex-shrink-0 group-hover:animate-wiggle">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <p className="text-sm">Word Wizardry - Building awesome vocabulary and language skills!</p>
-              </li>
-              <li className="flex items-start group hover:scale-105 transition-transform duration-300">
-                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-0.5 mr-3 flex-shrink-0 group-hover:animate-pulse">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <p className="text-sm">Smooth Talkers Club - Making speech flow like magic!</p>
-              </li>
-              <li className="flex items-start group hover:scale-105 transition-transform duration-300">
-                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-0.5 mr-3 flex-shrink-0 group-hover:animate-spin-slow">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <p className="text-sm">Voice Heroes - Finding your super voice and making it strong!</p>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
