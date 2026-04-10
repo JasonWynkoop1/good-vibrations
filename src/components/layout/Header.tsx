@@ -9,8 +9,8 @@ interface HeaderProps {
 
 export function Header({ mainNavItems, isMenuOpen, toggleMenu }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-border/40 shadow-sm">
-      <div className="container flex h-16 md:h-20 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-border/40 shadow-sm relative">
+      <div className="container flex flex-col md:flex-row h-auto md:h-20 items-center justify-center gap-2 md:gap-6 py-3 md:py-0">
         <a href="#home" className="flex items-center">
           <img src={logoImg} alt="Good Vibrations Speech and Language" className="h-10 md:h-12 w-auto" />
         </a>
@@ -20,14 +20,14 @@ export function Header({ mainNavItems, isMenuOpen, toggleMenu }: HeaderProps) {
             <a
               key={item.href}
               href={item.href}
-              className="px-3 py-2 text-sm font-heading font-medium text-muted-foreground transition-colors hover:text-primary"
+              className="px-2 lg:px-3 py-2 text-sm font-heading font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="md:hidden">
+        <div className="md:hidden absolute right-4 top-3">
           <Button
             variant="ghost"
             size="icon"
