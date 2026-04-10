@@ -106,166 +106,115 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
   };
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="contact" 
-      className="container py-16 md:py-24 max-w-3xl mx-auto"
+    <section
+      ref={sectionRef}
+      id="contact"
+      className="bg-gradient-to-br from-[hsl(var(--surface-lavender))] to-[hsl(var(--surface-blue))] py-16 md:py-24"
     >
-      {/* Minimalist header */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-medium mb-3 text-teal-600">
-          Contact Us
-        </h2>
-        <p className="text-gray-600 max-w-md mx-auto">
-          We're here to support your district's speech and language programs.
-        </p>
-      </div>
-
-      {/* Contact info - simplified */}
-      <div className="flex justify-center gap-8 mb-12 text-sm text-gray-600">
-        <a href="mailto:goodvibrations.speech@gmail.com" className="flex items-center hover:text-teal-600 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-          </svg>
-          goodvibrations.speech@gmail.com
-        </a>
-        <a href="tel:+15742651847" className="flex items-center hover:text-teal-600 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-          </svg>
-          (574) 265-1847
-        </a>
-      </div>
-
-      <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
-        {/* Form header - simplified */}
-        <div className="mb-8">
-          <h3 className="text-xl font-medium text-gray-800">Send us a message</h3>
+      <div className="container px-4 sm:px-6 max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <span className="text-xs font-heading font-medium text-primary uppercase tracking-widest">Contact</span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mt-2 animate-fade-in">
+            Get In Touch
+          </h2>
         </div>
 
-        {submissionStatus === 'success' ? (
-          <div className="text-center py-8">
-            <svg className="h-12 w-12 text-teal-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <h3 className="text-xl font-medium text-gray-800 mb-2">Message Sent</h3>
-            <p className="text-gray-600 mb-6">
-              Thank you for reaching out. We'll be in touch with you shortly.
-            </p>
-            <button 
-              onClick={() => setSubmissionStatus('idle')}
-              className="text-sm text-teal-600 hover:text-teal-800 underline"
-            >
-              Send another message
-            </button>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Contact Info */}
+          <div className="space-y-6 animate-fade-in-up">
+            <div>
+              <h3 className="font-heading font-semibold text-foreground mb-3">Contact Info</h3>
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <a href="mailto:goodvibrations.speech@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  goodvibrations.speech@gmail.com
+                </a>
+                <a href="tel:+15742651847" className="flex items-center gap-2 hover:text-primary transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  (574) 265-1847
+                </a>
+              </div>
+            </div>
+            <div className="bg-primary/10 rounded-xl p-4 text-center">
+              <p className="font-heading font-semibold text-primary text-sm">Now contracting for 2026–2027 school year</p>
+            </div>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {submissionStatus === 'error' && (
-              <div className="p-3 border-l-4 border-rose-400 bg-rose-50 text-rose-700 text-sm">
-                {errorMessage}
-              </div>
-            )}
 
-            {/* Form fields - simplified */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <Label htmlFor="firstName" className="text-gray-700 text-sm mb-1 block">
-                  First Name <span className="text-rose-500">*</span>
-                </Label>
-                <Input
-                  type="text"
-                  id="firstName"
-                  placeholder="First name"
-                  className="w-full border-gray-200 focus:border-teal-400 focus:ring-0 h-10 rounded-md"
-                  required
-                  value={formData.firstName}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <Label htmlFor="lastName" className="text-gray-700 text-sm mb-1 block">
-                  Last Name <span className="text-rose-500">*</span>
-                </Label>
-                <Input
-                  type="text"
-                  id="lastName"
-                  placeholder="Last name"
-                  className="w-full border-gray-200 focus:border-teal-400 focus:ring-0 h-10 rounded-md"
-                  required
-                  value={formData.lastName}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+          {/* Contact Form */}
+          <div className="md:col-span-2">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-border/30">
+              {submissionStatus === 'success' ? (
+                <div className="text-center py-8">
+                  <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--secondary))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <h3 className="text-xl font-heading font-semibold text-foreground mb-2">Message Sent</h3>
+                  <p className="text-muted-foreground mb-6">Thank you for reaching out. We'll be in touch with you shortly.</p>
+                  <button onClick={() => setSubmissionStatus('idle')} className="text-sm text-primary hover:text-primary/80 underline">
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {submissionStatus === 'error' && (
+                    <div className="p-3 border-l-4 border-destructive bg-destructive/5 text-destructive text-sm rounded-r-lg">
+                      {errorMessage}
+                    </div>
+                  )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <Label htmlFor="email" className="text-gray-700 text-sm mb-1 block">
-                  Email <span className="text-rose-500">*</span>
-                </Label>
-                <Input
-                  type="email"
-                  id="email"
-                  placeholder="your@email.com"
-                  className="w-full border-gray-200 focus:border-teal-400 focus:ring-0 h-10 rounded-md"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <Label htmlFor="phone" className="text-gray-700 text-sm mb-1 block">
-                  Phone <span className="text-gray-400 text-xs">(Optional)</span>
-                </Label>
-                <Input
-                  type="tel"
-                  id="phone"
-                  placeholder="(123) 456-7890"
-                  className="w-full border-gray-200 focus:border-teal-400 focus:ring-0 h-10 rounded-md"
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="firstName" className="text-sm text-foreground mb-1.5 block font-heading">
+                        First Name <span className="text-destructive">*</span>
+                      </Label>
+                      <Input type="text" id="firstName" placeholder="First name" className="w-full" required value={formData.firstName} onChange={handleChange} />
+                    </div>
+                    <div>
+                      <Label htmlFor="lastName" className="text-sm text-foreground mb-1.5 block font-heading">
+                        Last Name <span className="text-destructive">*</span>
+                      </Label>
+                      <Input type="text" id="lastName" placeholder="Last name" className="w-full" required value={formData.lastName} onChange={handleChange} />
+                    </div>
+                  </div>
 
-            <div className="mb-8">
-              <Label htmlFor="message" className="text-gray-700 text-sm mb-1 block">
-                Message <span className="text-gray-400 text-xs">(Optional)</span>
-              </Label>
-              <Textarea
-                id="message"
-                rows={4}
-                placeholder="How can we help you?"
-                className="w-full border-gray-200 focus:border-teal-400 focus:ring-0 rounded-md resize-y"
-                value={formData.message}
-                onChange={handleChange}
-              />
-            </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="email" className="text-sm text-foreground mb-1.5 block font-heading">
+                        Email <span className="text-destructive">*</span>
+                      </Label>
+                      <Input type="email" id="email" placeholder="your@email.com" className="w-full" required value={formData.email} onChange={handleChange} />
+                    </div>
+                    <div>
+                      <Label htmlFor="phone" className="text-sm text-foreground mb-1.5 block font-heading">
+                        Phone <span className="text-xs text-muted-foreground">(Optional)</span>
+                      </Label>
+                      <Input type="tel" id="phone" placeholder="(123) 456-7890" className="w-full" value={formData.phone} onChange={handleChange} />
+                    </div>
+                  </div>
 
-            {/* Submit button - simplified */}
-            <div className="mt-8">
-              <Button 
-                type="submit" 
-                className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3 rounded-md transition-colors"
-                disabled={submissionStatus === 'submitting'}
-              >
-                {submissionStatus === 'submitting' ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </span>
-                ) : (
-                  "Send Message"
-                )}
-              </Button>
+                  <div>
+                    <Label htmlFor="message" className="text-sm text-foreground mb-1.5 block font-heading">
+                      Message <span className="text-xs text-muted-foreground">(Optional)</span>
+                    </Label>
+                    <Textarea id="message" rows={4} placeholder="How can we help you?" className="w-full resize-y" value={formData.message} onChange={handleChange} />
+                  </div>
+
+                  <Button type="submit" className="w-full py-3 rounded-xl shadow-[0_0_12px_rgba(124,107,196,0.15)]" disabled={submissionStatus === 'submitting'}>
+                    {submissionStatus === 'submitting' ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : "Send Message"}
+                  </Button>
+                </form>
+              )}
             </div>
-          </form>
-        )}
+          </div>
+        </div>
       </div>
     </section>
   );
