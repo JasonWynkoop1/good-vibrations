@@ -4,9 +4,8 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Using custom domain goodvibrationsspeech.net
   build: {
-    outDir: 'docs', // Output to docs directory for GitHub Pages
+    outDir: 'dist',
   },
   resolve: {
     alias: {

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { TopBar } from './layout/TopBar';
 import { Header } from './layout/Header';
 import { MobileMenu } from './layout/MobileMenu';
 import { Footer } from './layout/Footer';
@@ -12,11 +11,13 @@ export function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const mainNavItems = [
-    { href: "#services", label: "Services" },
+    { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
-    { href: "#team", label: "Our Team" },
-    { href: "#testimonials", label: "Success Stories" },
-    { href: "#contact", label: "Contact" }
+    { href: "#services", label: "Services" },
+    { href: "#why-us", label: "Why Us" },
+    { href: "#join", label: "Join Our Team" },
+    { href: "#contact", label: "Contact" },
+    { href: "#resources", label: "Resources" },
   ];
 
   const toggleMenu = () => {
@@ -28,16 +29,15 @@ export function Layout({ children }: LayoutProps) {
       <a href="#main-content" className="skip-to-content">
         Skip to content
       </a>
-      <TopBar />
-      <Header 
-        mainNavItems={mainNavItems} 
-        isMenuOpen={isMenuOpen} 
-        toggleMenu={toggleMenu} 
+      <Header
+        mainNavItems={mainNavItems}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
       />
-      <MobileMenu 
-        isMenuOpen={isMenuOpen} 
-        mainNavItems={mainNavItems} 
-        setIsMenuOpen={setIsMenuOpen} 
+      <MobileMenu
+        isMenuOpen={isMenuOpen}
+        mainNavItems={mainNavItems}
+        setIsMenuOpen={setIsMenuOpen}
       />
 
       <main id="main-content" className="flex-1">
