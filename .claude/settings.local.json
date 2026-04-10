@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find /c/Users/jason/WebstormProjects/good-vibrations -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" -o -name \"*.json\" -o -name \"*.md\" -o -name \"*.html\" -o -name \"*.css\" \\\\\\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" ! -path \"*/docs/*\" ! -path \"*/dist/*\" -exec grep -l \"lumerion\\\\|Lumerion\" {} \\\\;)"
+      "Bash(find /c/Users/jason/WebstormProjects/good-vibrations -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" -o -name \"*.json\" -o -name \"*.md\" -o -name \"*.html\" -o -name \"*.css\" \\\\\\) ! -path \"*/node_modules/*\" ! -path \"*/.git/*\" ! -path \"*/docs/*\" ! -path \"*/dist/*\" -exec grep -l \"lumerion\\\\|Lumerion\" {} \\\\;)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }
