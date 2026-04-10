@@ -13,8 +13,8 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Open Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-      heading: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      sans: ['Lora', 'Georgia', 'serif'],
+      heading: ['Outfit', 'system-ui', 'sans-serif'],
     },
     extend: {
       colors: {
@@ -54,6 +54,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        surface: {
+          lavender: "hsl(var(--surface-lavender))",
+          blue: "hsl(var(--surface-blue))",
+          gold: "hsl(var(--surface-gold))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -70,45 +75,29 @@ module.exports = {
           to: { height: "0" },
         },
         "fade-in": {
-          "0%": { opacity: "0.7" },
-          "100%": { opacity: "1" },
-        },
-        "fade-in-up": {
-          "0%": { opacity: "0.7", transform: "translateY(10px)" },
+          "0%": { opacity: "0", transform: "translateY(8px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "fade-in-down": {
-          "0%": { opacity: "0.7", transform: "translateY(-10px)" },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "scale-in": {
-          "0%": { opacity: "0.7", transform: "scale(0.98)" },
+          "0%": { opacity: "0", transform: "scale(0.96)" },
           "100%": { opacity: "1", transform: "scale(1)" },
-        },
-        "spin-slow": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
         },
         "bounce-subtle": {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-5px)" },
-        },
-        "wiggle": {
-          "0%, 100%": { transform: "rotate(-3deg)" },
-          "50%": { transform: "rotate(3deg)" },
+          "50%": { transform: "translateY(-4px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.8s ease-out",
-        "fade-in-up": "fade-in-up 0.8s ease-out",
-        "fade-in-down": "fade-in-down 0.8s ease-out",
-        "scale-in": "scale-in 0.8s ease-out",
-        "section-visible": "none", // This is a placeholder for the Intersection Observer
-        "spin-slow": "spin-slow 3s linear infinite",
+        "fade-in": "fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "fade-in-up": "fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "scale-in": "scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both",
         "bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
-        "wiggle": "wiggle 1s ease-in-out infinite",
       },
     },
   },
