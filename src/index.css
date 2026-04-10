@@ -98,7 +98,9 @@
 
   /* Container styles */
   .container {
-    @apply px-4 sm:px-6 lg:px-8 mx-auto;
+    @apply px-4 sm:px-6 lg:px-8;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   /* Utility classes */
