@@ -120,11 +120,6 @@ export function ContactSection({ sectionRef }: ContactSectionProps) {
           <p className="text-muted-foreground mt-3 text-sm">We'd love to hear from you. Reach out anytime.</p>
         </div>
 
-        {/* Contracting banner */}
-        <div className="bg-primary/10 rounded-xl p-4 text-center mb-8 animate-fade-in">
-          <p className="font-heading font-semibold text-primary text-sm">Now contracting for 2026–2027 school year</p>
-        </div>
-
         {/* Contact links */}
         <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8 text-sm text-muted-foreground animate-fade-in-up">
           <a href="mailto:goodvibrations.speech@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors justify-center">

@@ -96,12 +96,6 @@
     @apply bg-white/80 backdrop-blur-sm border border-border/40 shadow-sm hover:shadow-md rounded-xl overflow-hidden;
   }
 
-  /* Container styles */
-  .container {
-    @apply px-4 sm:px-6 lg:px-8;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
 
   /* Utility classes */
   .text-balance {
