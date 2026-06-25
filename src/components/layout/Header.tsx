@@ -1,5 +1,6 @@
+import { useState, type MouseEvent } from 'react';
 import { Button } from '../ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from '../ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '../ui/sheet';
 import { Menu } from '../ui/icons';
 import logo from '../../assets/logo-0.png';
 
@@ -11,6 +12,22 @@ const NAV = [
 ];
 
 export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Mobile drawer links: close the Sheet first, then scroll once Radix has
+  // released its scroll-lock. A plain anchor click inside the open dialog gets
+  // clamped by the lock and overridden by focus-restore, so it appears to do
+  // nothing. We wait out the close animation (~300ms) before scrolling.
+  const goTo = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const id = href.slice(1);
+    window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', href);
+    }, 350);
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-[12px]">
       <div className="mx-auto grid h-[74px] max-w-[1180px] grid-cols-[1fr_auto] items-center gap-5 px-6 md:grid-cols-[1fr_auto_1fr]">
@@ -46,7 +63,7 @@ export function Header() {
           </Button>
 
           <div className="md:hidden">
-            <Sheet>
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
@@ -57,27 +74,30 @@ export function Header() {
                   <Menu size={24} />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[80%] max-w-[320px] bg-background">
+              <SheetContent
+                side="right"
+                className="w-[80%] max-w-[320px] bg-background"
+                onCloseAutoFocus={(e) => e.preventDefault()}
+              >
                 <SheetTitle className="sr-only">Menu</SheetTitle>
                 <nav className="mt-10 flex flex-col gap-1">
                   {NAV.map((item) => (
-                    <SheetClose asChild key={item.href}>
-                      <a
-                        href={item.href}
-                        className="rounded-lg px-3 py-3 font-heading text-[17px] font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
-                      >
-                        {item.label}
-                      </a>
-                    </SheetClose>
-                  ))}
-                  <SheetClose asChild>
                     <a
-                      href="#contact"
-                      className="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 font-heading text-[15px] font-semibold text-primary-foreground"
+                      key={item.href}
+                      href={item.href}
+                      onClick={(e) => goTo(e, item.href)}
+                      className="rounded-lg px-3 py-3 font-heading text-[17px] font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
                     >
-                      Get in Touch
+                      {item.label}
                     </a>
-                  </SheetClose>
+                  ))}
+                  <a
+                    href="#contact"
+                    onClick={(e) => goTo(e, '#contact')}
+                    className="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 font-heading text-[15px] font-semibold text-primary-foreground"
+                  >
+                    Get in Touch
+                  </a>
                 </nav>
               </SheetContent>
             </Sheet>

@@ -54,6 +54,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Offset anchor targets so section tops clear the 74px sticky header. */
+    scroll-padding-top: 80px;
   }
 
   body {
