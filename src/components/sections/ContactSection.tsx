@@ -119,7 +119,7 @@ export function ContactSection() {
 
             {/* Phone card */}
             <a
-              href="tel:"
+              href="tel:+15742651847"
               className="flex items-center gap-[14px] bg-card border border-border rounded-[16px] px-[22px] py-[18px] shadow-[0_14px_30px_-24px_rgba(70,64,107,0.45)] transition-[transform,box-shadow] duration-200 hover:scale-[1.02]"
             >
               <span className="flex-none w-[46px] h-[46px] rounded-[13px] bg-surface-mint flex items-center justify-center">
@@ -130,7 +130,7 @@ export function ContactSection() {
                   Phone
                 </span>
                 <span className="block font-heading text-[16px] font-semibold text-foreground">
-                  Add your number
+                  (574) 265-1847
                 </span>
               </span>
             </a>
