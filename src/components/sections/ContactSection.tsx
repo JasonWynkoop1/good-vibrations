@@ -61,7 +61,18 @@ export function ContactSection() {
       );
       setSent(true);
     } catch (err) {
-      setError('Something went wrong. Please try again, or email me directly.');
+      console.error('EmailJS send failed:', err);
+      const detail =
+        err && typeof err === 'object' && 'text' in err
+          ? String((err as { text?: unknown }).text ?? '')
+          : err instanceof Error
+            ? err.message
+            : '';
+      setError(
+        detail
+          ? `Couldn't send (${detail}). Please email goodvibrations.speech@gmail.com directly.`
+          : 'Something went wrong. Please email goodvibrations.speech@gmail.com directly.'
+      );
       setSending(false);
     }
   };
