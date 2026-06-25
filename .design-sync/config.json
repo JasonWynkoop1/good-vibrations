@@ -1,0 +1,41 @@
+{
+  "pkg": "goodvibrations",
+  "globalName": "GoodVibrations",
+  "projectId": "33fd91ee-72a7-406f-8323-3b66c83857c8",
+  "shape": "package",
+  "srcDir": "src/components/ui",
+  "tsconfig": ".design-sync/tsconfig.ds.json",
+  "cssEntry": ".design-sync/.cache/ds-styles.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "componentSrcMap": {
+    "CardHeader": null,
+    "CardTitle": null,
+    "CardDescription": null,
+    "CardContent": null,
+    "CardFooter": null,
+    "SheetTrigger": null,
+    "SheetClose": null,
+    "SheetPortal": null,
+    "SheetOverlay": null,
+    "SheetContent": null,
+    "SheetHeader": null,
+    "SheetFooter": null,
+    "SheetTitle": null,
+    "SheetDescription": null
+  },
+  "dtsPropsFor": {
+    "Button": "  /** Visual style. */\n  variant?: \"default\" | \"destructive\" | \"outline\" | \"secondary\" | \"ghost\" | \"link\";\n  /** Control size; \"icon\" is a square icon-only button. */\n  size?: \"default\" | \"sm\" | \"lg\" | \"icon\";\n  /** Render as the single child element via Radix Slot instead of a <button> (e.g. wrap an <a> to style a link as a button). */\n  asChild?: boolean;\n  children?: React.ReactNode;\n  className?: string;\n  type?: \"button\" | \"submit\" | \"reset\";\n  disabled?: boolean;\n  onClick?: React.MouseEventHandler<HTMLButtonElement>;",
+    "Card": "  /** Surface container. Compose with CardHeader, CardTitle, CardDescription, CardContent and CardFooter (each a separate export). */\n  children?: React.ReactNode;\n  className?: string;",
+    "Input": "  /** Renders a styled <input>; forwards ALL standard input HTML attributes (it spreads ...props onto the element) — the most common are listed here. */\n  type?: React.HTMLInputTypeAttribute;\n  placeholder?: string;\n  value?: string | number;\n  defaultValue?: string | number;\n  onChange?: React.ChangeEventHandler<HTMLInputElement>;\n  onBlur?: React.FocusEventHandler<HTMLInputElement>;\n  disabled?: boolean;\n  required?: boolean;\n  readOnly?: boolean;\n  autoComplete?: string;\n  inputMode?: \"text\" | \"numeric\" | \"tel\" | \"email\" | \"url\" | \"decimal\" | \"search\" | \"none\";\n  maxLength?: number;\n  minLength?: number;\n  pattern?: string;\n  min?: number | string;\n  max?: number | string;\n  step?: number | string;\n  name?: string;\n  id?: string;\n  className?: string;",
+    "Label": "  /** id of the form control this label is bound to. */\n  htmlFor?: string;\n  children?: React.ReactNode;\n  className?: string;",
+    "Sheet": "  /** Controlled open state. */\n  open?: boolean;\n  /** Uncontrolled initial open state. */\n  defaultOpen?: boolean;\n  /** Fired when the open state changes. */\n  onOpenChange?: (open: boolean) => void;\n  /** Whether the sheet blocks interaction with the rest of the page (default true). */\n  modal?: boolean;\n  /** Slide-out panel. Compose with SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter and SheetClose. SheetContent takes side?: \"top\" | \"bottom\" | \"left\" | \"right\" (default \"right\"). */\n  children?: React.ReactNode;",
+    "Textarea": "  /** Renders a styled <textarea>; forwards ALL standard textarea HTML attributes (it spreads ...props onto the element) — the most common are listed here. */\n  placeholder?: string;\n  value?: string;\n  defaultValue?: string;\n  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;\n  onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;\n  rows?: number;\n  cols?: number;\n  maxLength?: number;\n  disabled?: boolean;\n  required?: boolean;\n  readOnly?: boolean;\n  autoComplete?: string;\n  name?: string;\n  id?: string;\n  className?: string;"
+  },
+  "overrides": {
+    "Sheet": {
+      "cardMode": "single",
+      "viewport": "480x360",
+      "primaryStory": "Open"
+    }
+  }
+}
