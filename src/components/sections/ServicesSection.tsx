@@ -1,50 +1,45 @@
-import React from 'react';
-
-interface ServicesSectionProps {
-  sectionRef: React.RefObject<HTMLElement>;
-}
+import { Check } from "../ui/icons";
 
 const services = [
-  { label: "School-based contract services", color: "primary" },
-  { label: "IEP development & progress monitoring", color: "secondary" },
-  { label: "Medicaid Billing", color: "accent" },
-  { label: "Evaluations & re-evaluations", color: "primary" },
-  { label: "AAC support", color: "secondary" },
-  { label: "Push-in & pull-out therapy", color: "accent" },
-  { label: "Collaboration with staff & families", color: "primary" },
-] as const;
+  "School-based contract services",
+  "IEP development & progress monitoring",
+  "Medicaid billing",
+  "Evaluations & re-evaluations",
+  "AAC support",
+  "Push-in & pull-out therapy",
+  "Collaboration with staff & families",
+];
 
-const colorMap = {
-  primary: { bg: "bg-[hsl(var(--surface-lavender))]", dot: "bg-primary" },
-  secondary: { bg: "bg-[hsl(var(--surface-blue))]", dot: "bg-secondary" },
-  accent: { bg: "bg-[hsl(var(--surface-gold))]", dot: "bg-accent" },
-} as const;
-
-export function ServicesSection({ sectionRef }: ServicesSectionProps) {
+export function ServicesSection() {
   return (
-    <section ref={sectionRef} id="services" className="bg-white py-16 md:py-24">
-      <div className="container px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <span className="text-xs font-heading font-medium text-primary uppercase tracking-widest">Services</span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mt-2 animate-fade-in">
-            What We Offer
+    <section id="services" className="bg-background py-[104px]">
+      <div className="container mx-auto max-w-[1180px] px-6">
+        <div className="mx-auto mb-14 max-w-[680px] text-center">
+          <span className="font-heading text-[13px] font-bold uppercase tracking-[0.14em] text-secondary">
+            Services
+          </span>
+          <h2 className="mt-[14px] mb-3 text-[40px] font-bold tracking-[-0.02em] text-foreground">
+            What we provide
           </h2>
+          <p className="text-[18px] leading-[1.6] text-muted-foreground">
+            Comprehensive, school-based support, from evaluation through ongoing therapy and documentation.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-          {services.map((service, i) => {
-            const colors = colorMap[service.color];
-            return (
-              <div
-                key={service.label}
-                className={`${colors.bg} rounded-xl px-5 py-4 flex items-center gap-3 border border-border/30 animate-fade-in-up hover:shadow-md transition-shadow`}
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <div className={`w-2.5 h-2.5 rounded-full ${colors.dot} flex-shrink-0`}></div>
-                <span className="text-sm font-heading font-medium text-foreground">{service.label}</span>
-              </div>
-            );
-          })}
+        <div className="grid grid-cols-1 gap-[18px] md:grid-cols-3">
+          {services.map((service) => (
+            <div
+              key={service}
+              className="flex items-center gap-4 rounded-[16px] border border-border bg-card p-[22px] shadow-[0_10px_26px_-20px_rgba(70,64,107,0.4)] transition-[transform,box-shadow] duration-200 hover:scale-[1.02]"
+            >
+              <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[11px] bg-surface-lavender">
+                <Check size={19} strokeWidth={2.4} className="text-primary" />
+              </span>
+              <span className="font-heading text-[16px] font-medium leading-[1.3] text-foreground">
+                {service}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

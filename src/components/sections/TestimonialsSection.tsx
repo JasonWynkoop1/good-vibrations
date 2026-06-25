@@ -1,20 +1,18 @@
-import React from 'react';
-
-interface TestimonialsSectionProps {
-  sectionRef: React.RefObject<HTMLElement>;
-}
-
-export function TestimonialsSection({ sectionRef }: TestimonialsSectionProps) {
+export function TestimonialsSection() {
   return (
-    <section ref={sectionRef} id="testimonials" className="bg-white py-12 md:py-16">
-      <div className="container px-4 sm:px-6 text-center">
-        <span className="text-xs font-heading font-medium text-primary uppercase tracking-widest">Testimonials</span>
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mt-2 mb-4">
-          What People Are Saying
-        </h2>
-        <p className="text-muted-foreground max-w-md mx-auto">
-          Testimonials from teachers, administrators, and parents coming soon.
-        </p>
+    <section className="bg-background py-[80px]">
+      <div className="mx-auto max-w-[760px] px-6 text-center">
+        <div className="rounded-[24px] border-[1.5px] border-dashed border-border bg-surface-gold px-[32px] py-[48px]">
+          <span className="font-heading text-[13px] font-bold uppercase tracking-[0.14em] text-accent-ink">
+            Kind Words
+          </span>
+          <h3 className="mb-[8px] mt-[12px] text-[26px] font-semibold text-foreground">
+            Testimonials coming soon
+          </h3>
+          <p className="text-[16px] leading-[1.6] text-muted-foreground">
+            Reserved for words from the teachers, administrators, and families we partner with.
+          </p>
+        </div>
       </div>
     </section>
   );

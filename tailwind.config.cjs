@@ -42,6 +42,7 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          ink: "hsl(var(--accent-ink))",
         },
         highlight: {
           DEFAULT: "hsl(var(--highlight))",
@@ -57,8 +58,12 @@ module.exports = {
         surface: {
           lavender: "hsl(var(--surface-lavender))",
           blue: "hsl(var(--surface-blue))",
+          mint: "hsl(var(--surface-mint))",
           gold: "hsl(var(--surface-gold))",
         },
+        "background-alt": "hsl(var(--background-alt))",
+        badge: "hsl(var(--badge))",
+        deep: "hsl(var(--deep))",
       },
       borderRadius: {
         lg: "var(--radius)",

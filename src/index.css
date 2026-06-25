@@ -4,166 +4,93 @@
 
 @layer base {
   :root {
-    --background: 260 30% 98%;
-    --foreground: 263 40% 20%;
+    /* ── Pastel palette (homepage redesign) ─────────────────────────────── */
+    --background: 248 100% 99%;       /* #FBFAFF page base */
+    --background-alt: 252 100% 97%;   /* #F4F0FF About & Join bands */
+    --foreground: 248 25% 34%;        /* #46406B soft plum-navy ink */
 
     --card: 0 0% 100%;
-    --card-foreground: 263 40% 20%;
+    --card-foreground: 248 25% 34%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 263 40% 20%;
+    --popover-foreground: 248 25% 34%;
 
-    --primary: 260 40% 59%;
+    --primary: 250 62% 68%;           /* #8C7BE0 brand purple */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 170 40% 55%;
+    --secondary: 174 52% 52%;         /* #46C5B8 teal */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 260 30% 96%;
-    --muted-foreground: 260 20% 46%;
+    --muted: 252 100% 97%;            /* #F4F0FF */
+    --muted-foreground: 249 18% 56%;  /* #827CA3 secondary text */
 
-    --accent: 48 75% 65%;
-    --accent-foreground: 263 40% 20%;
+    --accent: 42 100% 68%;            /* #FFCF5E warm gold */
+    --accent-foreground: 248 25% 34%;
+    --accent-ink: 42 70% 47%;         /* #C99A24 icon/text on gold tints */
 
-    --highlight: 260 40% 59%;
+    --highlight: 250 62% 68%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 260 20% 90%;
-    --input: 260 20% 90%;
-    --ring: 260 40% 59%;
+    --border: 258 55% 94%;            /* #ECE7F8 hairlines, field borders */
+    --input: 258 55% 94%;
+    --ring: 250 62% 68%;
 
     --radius: 0.75rem;
 
-    --surface-lavender: 260 30% 97%;
-    --surface-blue: 210 40% 97%;
-    --surface-gold: 48 80% 96%;
+    --badge: 254 67% 94%;             /* #EAE4FB pill fill */
+    --deep: 248 38% 32%;             /* #3A3270 dark band + footer */
+
+    --surface-lavender: 255 100% 97%; /* #F3EFFF icon tile tint */
+    --surface-blue: 214 100% 97%;     /* #EEF6FF icon tile tint */
+    --surface-mint: 158 53% 95%;      /* #EAFAF5 icon tile tint */
+    --surface-gold: 41 100% 95%;      /* #FFF7E6 icon tile tint */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2;
   }
 }
 
-@layer base {
-  * {
-    @apply border-[hsl(var(--border))];
+@layer components {
+  /* Hero + Contact band gradient — exact handoff stops. */
+  .bg-hero-gradient {
+    background-image: linear-gradient(
+      135deg,
+      #f3efff 0%,
+      #eef6ff 38%,
+      #eafaf5 70%,
+      #fff7e6 100%
+    );
   }
-  body {
-    @apply bg-background text-foreground font-sans;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-semibold tracking-tight;
-  }
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
-  }
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
-  }
-  h3 {
-    @apply text-2xl md:text-3xl leading-snug;
-  }
-  h4 {
-    @apply text-xl md:text-2xl;
-  }
-  p {
-    @apply leading-relaxed;
-  }
-  .card {
-    @apply transition-all duration-300;
-  }
+}
 
-  /* Enhanced button styles */
-  .btn, button[type="submit"], a[href].btn {
-    @apply font-heading font-medium rounded-md transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/70;
-  }
-
-  /* Form element improvements */
-  input, textarea, select {
-    @apply font-sans text-base rounded-md transition-colors duration-200 focus:ring-2 focus:ring-primary/50 focus:border-primary/50;
-  }
-
-  /* Improved link styles */
-  a:not(.btn):not([role="button"]) {
-    @apply transition-colors duration-200 hover:text-primary;
-  }
-
-  /* Improved spacing for sections */
-  section {
-    @apply py-12 md:py-16 lg:py-20;
-  }
-
-  /* Enhanced card styles */
-  .card {
-    @apply bg-white/80 backdrop-blur-sm border border-border/40 shadow-sm hover:shadow-md rounded-xl overflow-hidden;
-  }
-
-
-  /* Utility classes */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .glass-effect {
-    @apply bg-white/70 backdrop-blur-sm border border-white/20;
-  }
-
-  .section-title {
-    @apply font-heading font-bold text-center mb-8;
-  }
-
-  .section-description {
-    @apply text-muted-foreground text-center max-w-3xl mx-auto mb-12 text-balance;
-  }
-
-  /* Accessibility enhancements */
+@layer utilities {
+  /* Accessibility helpers used by Layout. */
   .sr-only {
-    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    @apply absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0;
+    margin: -1px;
     clip: rect(0, 0, 0, 0);
     clip-path: inset(50%);
   }
-
-  /* Enhanced focus styles for keyboard navigation */
-  :focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2;
-  }
-
-  /* Skip to content link for keyboard users */
   .skip-to-content {
-    @apply sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3 focus:bg-background focus:text-foreground focus:top-4 focus:left-4 focus:rounded-md;
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-background focus:p-3 focus:text-foreground;
   }
 }
-
-/* Animation classes for scroll reveal */
-.animate-fade-in,
-.animate-fade-in-up,
-.animate-scale-in {
-  opacity: 0;
-  animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Play animations when section is visible */
-.animate-section-visible .animate-fade-in,
-.animate-section-visible .animate-fade-in-up,
-.animate-section-visible .animate-scale-in {
-  animation-play-state: running;
-}
-
-/* Pause animations before section is visible */
-section:not(.animate-section-visible) .animate-fade-in,
-section:not(.animate-section-visible) .animate-fade-in-up,
-section:not(.animate-section-visible) .animate-scale-in {
-  animation-play-state: paused;
-  opacity: 0;
-}
-
-/* Ensure sections are always visible */
-section {
-  opacity: 1;
-}
-
-/* Animation delay utilities */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
