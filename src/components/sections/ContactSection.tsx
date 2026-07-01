@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
 import { Mail, Phone, Check } from '../ui/icons';
-import emailjs from 'emailjs-com';
 
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = 'service_u9yby3u';
@@ -27,10 +26,6 @@ export function ContactSection() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -47,6 +42,7 @@ export function ContactSection() {
     setSending(true);
 
     try {
+      const emailjs = (await import('emailjs-com')).default;
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
