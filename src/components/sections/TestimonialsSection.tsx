@@ -6,9 +6,9 @@ export function TestimonialsSection() {
           <span className="font-heading text-[13px] font-bold uppercase tracking-[0.14em] text-accent-ink">
             Kind Words
           </span>
-          <h3 className="mb-[8px] mt-[12px] text-[26px] font-semibold text-foreground">
+          <h2 className="mb-[8px] mt-[12px] text-[26px] font-semibold text-foreground">
             Testimonials coming soon
-          </h3>
+          </h2>
           <p className="text-[16px] leading-[1.6] text-muted-foreground">
             Reserved for words from the teachers, administrators, and families we partner with.
           </p>

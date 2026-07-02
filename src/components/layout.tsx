@@ -1,9 +1,9 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Header } from './layout/Header';
 import { Footer } from './layout/Footer';
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {

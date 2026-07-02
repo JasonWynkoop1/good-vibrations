@@ -16,7 +16,10 @@ export function AboutSection() {
           <img
             src={headshot}
             alt="Kayla Wynkoop"
-            className="relative z-[1] block w-full rounded-[26px] shadow-[0_26px_50px_-22px_rgba(70,64,107,0.5)]"
+            width={804}
+            height={804}
+            loading="lazy"
+            className="relative z-[1] block h-auto w-full rounded-[26px] shadow-[0_26px_50px_-22px_rgba(70,64,107,0.5)]"
           />
         </div>
         <div>

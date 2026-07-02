@@ -31,6 +31,8 @@ export function HeroSection() {
         <img
           src={logo}
           alt="Good Vibrations Speech and Language"
+          width={702}
+          height={248}
           className="h-[124px] w-auto block mx-auto mb-[30px]"
         />
 
@@ -39,8 +41,8 @@ export function HeroSection() {
         </h1>
 
         <p className="text-[21px] leading-[1.6] text-muted-foreground max-w-[680px] mx-auto mb-[38px]">
-          School-based speech therapy services supporting student communication,
-          confidence, and independence.
+          Teletherapy speech-language services for K–12 schools nationwide —
+          supporting student communication, confidence, and independence.
         </p>
 
         <div className="flex flex-wrap justify-center gap-[14px]">

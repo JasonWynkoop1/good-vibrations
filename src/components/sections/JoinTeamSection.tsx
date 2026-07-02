@@ -1,5 +1,6 @@
 import { Button } from "../ui/button";
 import { Check, Mail } from "../ui/icons";
+import { CONTACT_EMAIL } from "../../lib/constants";
 
 const perks = [
   "Competitive hourly pay",
@@ -76,7 +77,7 @@ export function JoinTeamSection() {
                 asChild
                 className="inline-flex h-auto items-center gap-[9px] rounded-full bg-primary px-[22px] py-[13px] font-heading text-[15px] font-semibold text-white transition-[transform,box-shadow] duration-200 hover:scale-[1.02] hover:bg-primary"
               >
-                <a href="mailto:goodvibrations.speech@gmail.com">
+                <a href={`mailto:${CONTACT_EMAIL}`}>
                   <Mail size={17} strokeWidth={2} className="text-white" />
                   Email your resume
                 </a>

@@ -76,6 +76,18 @@ node .ds-sync/package-validate.mjs ./ds-bundle --no-render-check   # see render 
 - `tokens: … (1 missing, below threshold)` — a Radix/tailwindcss-animate runtime
   variable (e.g. `--radix-*`) set in JS, not a real missing token. Benign.
 
+## Pending re-sync (2026-07-01 improvement batch)
+The app changed in ways the uploaded design-system project doesn't reflect yet
+— next `/design-sync` run picks these up automatically:
+- **Tokens darkened for WCAG AA**: `--muted-foreground` 249 18% 56% → **52%**,
+  `--accent-ink` 42 70% 47% → **33%** (in `src/index.css`; gen-css derives the
+  shipped stylesheet from it).
+- `Input`/`Textarea` props changed from empty `interface extends` to `type`
+  aliases (eslint `no-empty-object-type`) — no `.d.ts` impact
+  (`dtsPropsFor` overrides both).
+- `sheet.tsx` close button `focus:` → `focus-visible:` (cosmetic).
+- Unused `X` icon export removed from `ui/icons.tsx` (never synced).
+
 ## Re-sync risks (what can silently go stale)
 - **`dtsPropsFor` is hand-maintained** — drifts if the component APIs change.
 - **`ds-styles.css` is derived** from `src/index.css` + `tailwind.ds.cjs` —

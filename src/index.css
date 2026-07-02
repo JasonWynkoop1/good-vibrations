@@ -22,11 +22,15 @@
     --secondary-foreground: 0 0% 100%;
 
     --muted: 252 100% 97%;            /* #F4F0FF */
-    --muted-foreground: 249 18% 56%;  /* #827CA3 secondary text */
+    /* Darkened from the handoff's 56% (#827CA3, 3.98:1 on white) to meet
+       WCAG AA 4.5:1 for body text on both the page bg and white cards. */
+    --muted-foreground: 249 18% 52%;  /* #756F9B secondary text */
 
     --accent: 42 100% 68%;            /* #FFCF5E warm gold */
     --accent-foreground: 248 25% 34%;
-    --accent-ink: 42 70% 47%;         /* #C99A24 icon/text on gold tints */
+    /* Darkened from the handoff's 47% (#C99A24, 2.41:1 on the gold tint) to
+       meet WCAG AA 4.5:1 for the small eyebrow text on bg-surface-gold. */
+    --accent-ink: 42 70% 33%;         /* #8F6C19 icon/text on gold tints */
 
     --highlight: 250 62% 68%;
 
@@ -68,6 +72,21 @@
 
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2;
+  }
+
+  /* Respect users with vestibular/motion sensitivity: collapse animations,
+     transitions, and smooth scrolling to effectively instant. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 

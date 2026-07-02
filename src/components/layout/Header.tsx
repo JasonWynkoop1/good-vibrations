@@ -36,6 +36,8 @@ export function Header() {
           <img
             src={logo}
             alt="Good Vibrations Speech and Language"
+            width={702}
+            height={248}
             className="h-[42px] w-auto"
           />
         </a>

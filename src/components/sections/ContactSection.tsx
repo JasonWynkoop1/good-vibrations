@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
 import { Mail, Phone, Check } from '../ui/icons';
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_TEL,
+} from '../../lib/constants';
 
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = 'service_u9yby3u';
@@ -26,8 +31,20 @@ export function ContactSection() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
 
+  // Anti-spam (protects the EmailJS free-tier quota of 200 emails/month):
+  // a hidden honeypot field bots tend to fill (silent "success" — no email
+  // is sent, and nothing tips the bot off to retry) plus a burst guard
+  // against rapid repeat sends, which tells a real user to wait.
+  const [honeypot, setHoneypot] = useState('');
+  const lastAttempt = useRef(0);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (honeypot) {
+      setSent(true);
+      return;
+    }
 
     if (!firstName || !lastName || !email || !message) {
       setError('Please fill in all required fields.');
@@ -37,6 +54,13 @@ export function ContactSection() {
       setError('Please enter a valid email address.');
       return;
     }
+
+    const now = Date.now();
+    if (now - lastAttempt.current < 3000) {
+      setError('Please wait a moment before trying again.');
+      return;
+    }
+    lastAttempt.current = now;
 
     setError('');
     setSending(true);
@@ -66,8 +90,8 @@ export function ContactSection() {
             : '';
       setError(
         detail
-          ? `Couldn't send (${detail}). Please email goodvibrations.speech@gmail.com directly.`
-          : 'Something went wrong. Please email goodvibrations.speech@gmail.com directly.'
+          ? `Couldn't send (${detail}). Please email ${CONTACT_EMAIL} directly.`
+          : `Something went wrong. Please email ${CONTACT_EMAIL} directly.`
       );
       setSending(false);
     }
@@ -108,7 +132,7 @@ export function ContactSection() {
           <div className="flex flex-col gap-[14px] max-w-[440px]">
             {/* Email card */}
             <a
-              href="mailto:goodvibrations.speech@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="flex items-center gap-[14px] bg-card border border-border rounded-[16px] px-[22px] py-[18px] shadow-[0_14px_30px_-24px_rgba(70,64,107,0.45)] transition-[transform,box-shadow] duration-200 hover:scale-[1.02]"
             >
               <span className="flex-none w-[46px] h-[46px] rounded-[13px] bg-surface-lavender flex items-center justify-center">
@@ -119,14 +143,14 @@ export function ContactSection() {
                   Email
                 </span>
                 <span className="block font-heading text-[16px] font-semibold text-foreground">
-                  goodvibrations.speech@gmail.com
+                  {CONTACT_EMAIL}
                 </span>
               </span>
             </a>
 
             {/* Phone card */}
             <a
-              href="tel:+15742651847"
+              href={`tel:${CONTACT_PHONE_TEL}`}
               className="flex items-center gap-[14px] bg-card border border-border rounded-[16px] px-[22px] py-[18px] shadow-[0_14px_30px_-24px_rgba(70,64,107,0.45)] transition-[transform,box-shadow] duration-200 hover:scale-[1.02]"
             >
               <span className="flex-none w-[46px] h-[46px] rounded-[13px] bg-surface-mint flex items-center justify-center">
@@ -137,7 +161,7 @@ export function ContactSection() {
                   Phone
                 </span>
                 <span className="block font-heading text-[16px] font-semibold text-foreground">
-                  (574) 265-1847
+                  {CONTACT_PHONE_DISPLAY}
                 </span>
               </span>
             </a>
@@ -174,6 +198,25 @@ export function ContactSection() {
               <p className="text-[14.5px] text-muted-foreground mb-[24px]">
                 Tell me a little about your school and what you're looking for.
               </p>
+
+              {/* Honeypot — visually hidden and skipped by keyboard/screen
+                  readers; bots that auto-fill every field reveal themselves. */}
+              <div
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-px w-px overflow-hidden"
+              >
+                <label>
+                  Leave this field empty
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </label>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[14px] mb-[14px]">
                 <Label className="block">

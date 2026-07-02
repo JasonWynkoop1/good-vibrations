@@ -5,9 +5,9 @@ export function MissionSection() {
     <section className="bg-background py-[104px]">
       <div className="container max-w-[1180px] px-6">
         <div className="max-w-[820px] mx-auto mb-16 text-center">
-          <span className="font-heading text-[13px] font-bold tracking-[0.14em] uppercase text-secondary">
+          <h2 className="font-heading text-[13px] font-bold tracking-[0.14em] uppercase text-secondary">
             Our Mission
-          </span>
+          </h2>
           <p className="mt-5 text-[27px] leading-[1.5] text-foreground max-w-[820px]">
             Good Vibrations Speech and Language is committed to delivering
             high-quality, evidence-based services that support student success in
