@@ -1,5 +1,4 @@
 import { Button } from "../ui/button";
-import logoIcon from "../../assets/logo-icon.png";
 
 export function HeroSection() {
   return (
@@ -19,60 +18,41 @@ export function HeroSection() {
       <div
         aria-hidden
         className="pointer-events-none absolute rounded-full w-[240px] h-[240px] bg-[#FFCF5E] opacity-[0.18] blur-[60px] top-[40px]"
-        style={{ right: "12%" }}
+        style={{ right: "18%" }}
       />
 
-      {/* Two-column hero: copy left, brand artwork right (stacks on mobile). */}
-      <div className="relative mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-12 px-6 pt-[64px] pb-[72px] md:grid-cols-[1.05fr_0.95fr] md:gap-16 md:pt-[88px] md:pb-[96px]">
-        <div className="text-center md:text-left">
-          <span className="inline-flex items-center gap-2 font-heading text-[13px] font-semibold tracking-[0.02em] text-primary bg-badge border border-border px-[18px] py-2 rounded-full mb-[26px] whitespace-nowrap">
-            <span className="inline-block w-[7px] h-[7px] rounded-full bg-secondary" />
-            Now contracting for the 2026-2027 school year
-          </span>
+      {/* Centered hero, no logo (the header already carries it): badge,
+          large headline, subhead, CTAs, tight vertical rhythm. */}
+      <div className="relative max-w-[900px] mx-auto px-6 pt-[64px] pb-[76px] text-center">
+        <span className="inline-flex items-center gap-2 font-heading text-[13px] font-semibold tracking-[0.02em] text-primary bg-badge border border-border px-[18px] py-2 rounded-full mb-[26px] whitespace-nowrap">
+          <span className="inline-block w-[7px] h-[7px] rounded-full bg-secondary" />
+          Now contracting for the 2026-2027 school year
+        </span>
 
-          <h1 className="font-heading text-[42px] md:text-[52px] lg:text-[62px] leading-[1.06] tracking-[-0.025em] font-bold text-foreground mb-[22px]">
-            Helping students find their voice.
-          </h1>
+        <h1 className="font-heading text-[44px] md:text-[64px] lg:text-[72px] leading-[1.05] tracking-[-0.025em] font-bold text-foreground mb-[20px]">
+          <span className="md:block">Helping students</span>{" "}
+          <span className="md:block">find their voice.</span>
+        </h1>
 
-          <p className="text-[19px] md:text-[21px] leading-[1.6] text-muted-foreground max-w-[560px] mx-auto md:mx-0 mb-[38px]">
-            Teletherapy speech and language services for K-12 schools
-            nationwide, supporting student communication, confidence, and
-            independence.
-          </p>
+        <p className="text-[19px] md:text-[21px] leading-[1.6] text-muted-foreground max-w-[700px] mx-auto mb-[34px]">
+          Teletherapy speech and language services for K-12 schools nationwide,
+          supporting student communication, confidence, and independence.
+        </p>
 
-          <div className="flex flex-wrap justify-center md:justify-start gap-[14px]">
-            <Button
-              asChild
-              className="font-heading text-[16px] font-semibold text-white bg-primary px-[30px] py-[15px] h-auto rounded-full shadow-[0_14px_28px_-12px_#8C7BE0] transition-[transform,box-shadow] duration-200 hover:scale-[1.02] hover:bg-primary"
-            >
-              <a href="#contact">Get in Touch</a>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="font-heading text-[16px] font-semibold text-primary bg-white/70 border-[1.5px] border-border px-[30px] py-[15px] h-auto rounded-full transition-[transform,box-shadow] duration-200 hover:scale-[1.02] hover:bg-white/70 hover:text-primary"
-            >
-              <a href="#services">Explore Services</a>
-            </Button>
-          </div>
-        </div>
-
-        {/* Brand artwork — the icon mark from the logo used as illustration
-            (decorative: the header already carries the named logo, so alt=""
-            keeps screen readers from announcing the brand twice). Hidden on
-            mobile, where the copy stack stands alone. */}
-        <div className="relative hidden items-center justify-center md:flex">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute h-[400px] w-[400px] rounded-full bg-white/40 blur-3xl"
-          />
-          <img
-            src={logoIcon}
-            alt=""
-            width={403}
-            height={403}
-            className="relative h-auto w-full max-w-[400px] drop-shadow-[0_24px_45px_rgba(70,64,107,0.22)] animate-float"
-          />
+        <div className="flex flex-wrap justify-center gap-[14px]">
+          <Button
+            asChild
+            className="font-heading text-[16px] font-semibold text-white bg-primary px-[30px] py-[15px] h-auto rounded-full shadow-[0_14px_28px_-12px_#8C7BE0] transition-[transform,box-shadow] duration-200 hover:scale-[1.02] hover:bg-primary"
+          >
+            <a href="#contact">Get in Touch</a>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="font-heading text-[16px] font-semibold text-primary bg-white/70 border-[1.5px] border-border px-[30px] py-[15px] h-auto rounded-full transition-[transform,box-shadow] duration-200 hover:scale-[1.02] hover:bg-white/70 hover:text-primary"
+          >
+            <a href="#services">Explore Services</a>
+          </Button>
         </div>
       </div>
     </section>
