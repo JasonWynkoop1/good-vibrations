@@ -27,7 +27,7 @@ export function HeroSection() {
         <div className="text-center md:text-left">
           <span className="inline-flex items-center gap-2 font-heading text-[13px] font-semibold tracking-[0.02em] text-primary bg-badge border border-border px-[18px] py-2 rounded-full mb-[26px] whitespace-nowrap">
             <span className="inline-block w-[7px] h-[7px] rounded-full bg-secondary" />
-            Now contracting for the 2026–2027 school year
+            Now contracting for the 2026-2027 school year
           </span>
 
           <h1 className="font-heading text-[42px] md:text-[52px] lg:text-[62px] leading-[1.06] tracking-[-0.025em] font-bold text-foreground mb-[22px]">
@@ -35,8 +35,9 @@ export function HeroSection() {
           </h1>
 
           <p className="text-[19px] md:text-[21px] leading-[1.6] text-muted-foreground max-w-[560px] mx-auto md:mx-0 mb-[38px]">
-            Teletherapy speech-language services for K–12 schools nationwide —
-            supporting student communication, confidence, and independence.
+            Teletherapy speech and language services for K-12 schools
+            nationwide, supporting student communication, confidence, and
+            independence.
           </p>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-[14px]">

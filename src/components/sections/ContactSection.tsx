@@ -170,7 +170,7 @@ export function ContactSection() {
             <div className="flex items-center gap-[12px] bg-badge border border-border rounded-[16px] px-[22px] py-[16px]">
               <span className="flex-none w-[10px] h-[10px] rounded-full bg-secondary shadow-[0_0_0_4px_rgba(70,197,184,0.24)] animate-pulse" />
               <span className="font-heading text-[15px] font-semibold text-foreground">
-                Now contracting for the 2026–2027 school year
+                Now contracting for the 2026-2027 school year
               </span>
             </div>
           </div>

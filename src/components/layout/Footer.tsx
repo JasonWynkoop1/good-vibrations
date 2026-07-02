@@ -26,9 +26,9 @@ export function Footer() {
           </p>
         </div>
         <p className="mt-8 max-w-[760px] text-[13px] leading-relaxed text-white/40">
-          Good Vibrations Speech and Language provides teletherapy, school-based
-          speech-language pathology to K–12 school districts nationwide —
-          including evaluations and re-evaluations, IEP development and progress
+          Good Vibrations Speech and Language provides teletherapy speech and
+          language services to K-12 school districts nationwide, including
+          evaluations and re-evaluations, IEP development and progress
           monitoring, AAC support, Medicaid billing, and contract SLP coverage.
         </p>
         {/* NAP line (name / area / phone) — consistent contact details help
