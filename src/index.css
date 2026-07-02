@@ -101,6 +101,21 @@
       #fff7e6 100%
     );
   }
+
+  /* Gentle vertical float for the hero artwork (matches the handoff's
+     gvfloat blob animation; disabled by the reduced-motion query above). */
+  .animate-float {
+    animation: gv-float 9s ease-in-out infinite;
+  }
+  @keyframes gv-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
 }
 
 @layer utilities {

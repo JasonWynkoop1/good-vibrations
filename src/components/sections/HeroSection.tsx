@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import logo from "../../assets/logo-0.png";
+import logoIcon from "../../assets/logo-icon.png";
 
 export function HeroSection() {
   return (
@@ -56,15 +56,21 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Brand artwork — decorative here (the header carries the named logo),
-            so alt="" keeps screen readers from announcing the brand twice. */}
-        <div className="relative flex items-center justify-center">
+        {/* Brand artwork — the icon mark from the logo used as illustration
+            (decorative: the header already carries the named logo, so alt=""
+            keeps screen readers from announcing the brand twice). Hidden on
+            mobile, where the copy stack stands alone. */}
+        <div className="relative hidden items-center justify-center md:flex">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute h-[400px] w-[400px] rounded-full bg-white/40 blur-3xl"
+          />
           <img
-            src={logo}
+            src={logoIcon}
             alt=""
-            width={702}
-            height={248}
-            className="h-auto w-full max-w-[320px] md:max-w-[470px] drop-shadow-[0_18px_35px_rgba(70,64,107,0.18)]"
+            width={403}
+            height={403}
+            className="relative h-auto w-full max-w-[400px] drop-shadow-[0_24px_45px_rgba(70,64,107,0.22)] animate-float"
           />
         </div>
       </div>
